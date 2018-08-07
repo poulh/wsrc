@@ -74,7 +74,8 @@ $image_id = get_post_thumbnail_id();
 	<div itemprop="text" class="entry-content">
 		<?php the_content();?>
 
-		<div class="col-md-12 entry-content" style="background-color:rgb(250,250,250); border-color:rgb(238,238,238); border-style:solid;border-width:thin;">
+		<!-- Event Meta -->
+		<div class="col-md-12 entry-content" style="background-color:rgb(250,250,250); border-color:rgb(238,238,238); border-style:solid;border-width:thin; margin-top:20px;">
 			<div class="col-md-4">
 				<div class="event_meta_block">
 					<div class="event_meta_heading" style="padding-bottom:5px;">
@@ -152,8 +153,8 @@ if (sizeof($venues) > 0) {
             if ($numOrganizers > 0) {
                 ?>
 				<div class="event_meta_heading" style="padding-bottom:5px;">
-					<strong>Organizer
-						<?php echo($numOrganizers > 1 ? "s" : "") ?>
+					<strong>
+						<?php echo($numOrganizers > 1 ? "Organizers" : "Organizer") ?>
 					</strong>
 				</div>
 				<dl>
@@ -169,6 +170,49 @@ if (sizeof($venues) > 0) {
             } ?>
 			</div>
 		</div>
+		<!-- End Event Meta -->
+
+		<!-- Bio Section -->
+		<?php 
+        $bios = get_field('bios');
+        $numBios = sizeof($bios);
+        
+        if ($numBios > 0) {
+            ?>
+		<div class="col-md-12 entry-content" style="background-color:rgb(250,250,250); border-color:rgb(238,238,238); border-style:solid;border-width:thin; margin-top:20px;">
+			<div class="bio-header">
+				Related
+				<?php echo($numBios > 1 ? "Biographies" : "Biography"); ?>
+			</div>
+			<?php foreach ($bios as $bioID) {
+                $bioImageID = get_post_thumbnail_id($bioID);
+                $bioImageUrl = wp_get_attachment_image_src($bioImageID, 'parallax-one-post-thumbnail-big', true); ?>
+			<div class="bio-content">
+				<div class="col-md-4">
+					<picture itemscope itemprop="image">
+						<!--source media="(max-width: 600px)" srcset="<?php echo esc_url($image_url_mobile[0]); ?>" -->
+						<img src="<?php echo esc_url($bioImageUrl[0]); ?>">
+					</picture>
+				</div>
+				<div class="col-md-8">
+					<?php
+                //stupid. there isn't a get_the_content(postID) method so i have to reget the post and do stuff.
+                $content_post = get_post($bioID);
+                $content = $content_post->post_content;
+                echo $content; ?>
+
+				</div>
+			</div>
+			<?php
+            } ?>
+
+		</div>
+		<?php
+        }
+         ?>
+
+		<!-- End Bio Section -->
+
 	</div>
 	<!-- .entry-content -->
 
