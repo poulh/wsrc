@@ -37,7 +37,20 @@
 
 				<?php get_template_part('content', 'single'); ?>
 
-				<?php the_post_navigation(); ?>
+				<!-- Begin Navigation -->
+				<!-- ?php the_post_navigation(); ? -->
+				<nav class="navigation post-navigation" role="navigation">
+
+					<div class="nav-links">
+						<div class="nav-previous">
+							<?php previous_post_link('&laquo; %link', '%title', true);?>
+						</div>
+						<div class="nav-next">
+							<?php next_post_link('%link &raquo;', '%title', true);?>
+						</div>
+					</div>
+				</nav>
+				<!-- End Navigation -->
 
 				<?php
                     // If comments are open or we have at least one comment, load up the comment template

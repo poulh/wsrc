@@ -5,27 +5,24 @@
  * @package parallax-one
  */
 ?>
+<?php the_ID()?>
 <!-- A2: content-single.php Displays a single post -->
 <article id="post-<?php the_ID();?>" <?php post_class(
-    'content-single-page'
+ 'content-single-page'
 );?>>
-	<?php the_ID()?>
+
 	<header class="entry-header single-header">
 		<?php if (has_post_thumbnail()) {
-    ?>// check if the post has a Post Thumbnail assigned to it.
+    ?>
 
 		<div class="post-img-wrap">
 			<?php
-$x = 5;
-    $y = 7;?>
-
-			<?php
 $image_id = get_post_thumbnail_id();
     $image_url_big = wp_get_attachment_image_src($image_id, 'parallax-one-post-thumbnail-big', true);
-    $image_url_mobile = wp_get_attachment_image_src($image_id, 'parallax-one-post-thumbnail-mobile', true);?>
+    $image_url_mobile = wp_get_attachment_image_src($image_id, 'parallax-one-post-thumbnail-mobile', true); ?>
 			<picture itemscope itemprop="image">
 				<source media="(max-width: 600px)" srcset="<?php echo esc_url($image_url_mobile[0]); ?>">
-				<img src="<?php echo esc_url($image_url_big[0]); ?>" alt="<?php the_title_attribute();?>">
+				<img src="<?php echo esc_url($image_url_big[0]); ?>" alt="<?php the_title_attribute(); ?>">
 			</picture>
 			<?php
 // only show the date box for events
@@ -34,18 +31,18 @@ $image_id = get_post_thumbnail_id();
         ?>
 			<div class="post-date entry-published updated">
 				<span class="post-date-day">
-					<?php the_time('d');?>
+					<?php the_time('d'); ?>
 				</span>
 				<span class="post-date-month">
-					<?php the_time('M');?>
+					<?php the_time('M'); ?>
 				</span>
 			</div>
 			<?php
-}?>
+    } ?>
 
 		</div>
 		<?php
-}?>
+} ?>
 		<?php the_title('<h2 itemprop="headline" class="entry-title single-title">', '</h2>');?>
 		<div class="colored-line-left"></div>
 		<div class="clearfix"></div>
@@ -54,8 +51,8 @@ $image_id = get_post_thumbnail_id();
 			<span class="author-link" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
 				<span itemprop="name" class="post-author author vcard">
 					<i class="icon-man-people-streamline-user"></i>
-					<a href="<?php echo get_author_posts_url(get_the_author_meta('ID')); ?>"
-					 itemprop="url" rel="author">
+					<a href="<?php echo get_author_posts_url(get_the_author_meta('ID')); ?>" itemprop="url"
+					 rel="author">
 						<?php the_author();?>
 					</a>
 				</span>
@@ -86,11 +83,20 @@ $image_id = get_post_thumbnail_id();
 					<dl>
 						<dt>Date:</dt>
 						<dd>
-							<?php the_date('F j')?>
+							<?php echo get_the_date("F j");?>
 						</dd>
 						<dt>Time:</dt>
 						<dd>
-							<?php the_date('F j')?>
+							<?php $eventStartDate = new DateTime(get_the_date('Y-m-d H:i:sP'));
+                            $eventEndDate = clone($eventStartDate);
+                            $hours = get_field('duration');
+                            $seconds = $hours * 60 * 60;
+                            $spec = "PT". $seconds . "S";
+                            $interval = new DateInterval($spec);
+                            $eventEndDate->add($interval);
+                            $fmt = "g:ia";
+                            echo $eventStartDate->format($fmt) . " - " .$eventEndDate->format($fmt);
+                             ?>
 						</dd>
 					</dl>
 				</div>
@@ -110,20 +116,28 @@ if (sizeof($venues) > 0) {
     $state = get_field('state', $venueID);
     $zip_code = get_field('zip_code', $venueID);
     $combined_address = $address . ' ' . $city . ' ' . $state . ' ' . $zip_code;
-    $google_url = "https://www.google.com/maps/place/" . $combined_address;?>
+    $google_url = "https://www.google.com/maps/place/" . $combined_address; ?>
 					<dd>
 						<?php echo get_the_title($venueID) ?>
 					</dd>
 					<dd>
-						<?php echo $address; ?>
-						<br>
-						<?php echo $address2; ?>
-						<br>
-						<?php echo $city; ?>,
-						<?php echo $state; ?>
+						<?php echo $address . "<br>"; ?>
+						<?php if ($address2) {
+        echo $address2 . "<br>";
+    } ?>
+
+						<?php echo $city; ?>
+						<?php if ($state) {
+        echo ", " . $state;
+    } ?>
 						<?php echo $zip_code; ?>
 						<br>
+						<?php if ($address && $city && $state && $zip_code) {
+        ?>
 						<a target="0" href=" <?php echo $google_url ?> ">+ Google Maps</a>
+						<?php
+    } ?>
+
 					</dd>
 
 					<?php
@@ -146,14 +160,6 @@ if (sizeof($venues) > 0) {
 				</dl -->
 			</div>
 		</div>
-		<?php
-wp_link_pages(
-    array(
-        'before' => '<div class="page-links">' . esc_html__('Pages:', 'parallax-one'),
-        'after' => '</div>',
-    )
-);
-?>
 	</div>
 	<!-- .entry-content -->
 
