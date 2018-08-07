@@ -146,18 +146,27 @@ if (sizeof($venues) > 0) {
 				</dl>
 			</div>
 			<div class="col-md-4">
-				<!--div class = "event_meta_heading" style="padding-bottom:5px;">
-						<strong>Details</strong>
-					</div>
+				<?php 
+            $organizers = get_field('organizers');
+            $numOrganizers = sizeof($organizers);
+            if ($numOrganizers > 0) {
+                ?>
+				<div class="event_meta_heading" style="padding-bottom:5px;">
+					<strong>Organizer
+						<?php echo($numOrganizers > 1 ? "s" : "") ?>
+					</strong>
+				</div>
 				<dl>
-						<dt>Date:</dt>
-						<dd><?php the_date('F j')?>
-				</dd>
-				<dt>Time:</dt>
-				<dd>
-					<?php the_date('F j')?>
-				</dd>
-				</dl -->
+					<?php foreach ($organizers as $organizerID) {
+                    ?>
+					<dd>
+						<?php echo get_the_title($organizerID); ?>
+					</dd>
+					<?php
+                } ?>
+				</dl>
+				<?php
+            } ?>
 			</div>
 		</div>
 	</div>
