@@ -75,20 +75,21 @@ $image_id = get_post_thumbnail_id();
 		<?php the_content();?>
 
 		<!-- Event Meta -->
-		<div class="col-md-12 entry-content" style="background-color:rgb(250,250,250); border-color:rgb(238,238,238); border-style:solid;border-width:thin; margin-top:20px;">
-			<div class="col-md-4">
-				<div class="event_meta_block">
-					<div class="event_meta_heading" style="padding-bottom:5px;">
-						<strong>Details</strong>
-					</div>
-					<dl>
-						<dt>Date:</dt>
-						<dd>
-							<?php echo get_the_date("F j");?>
-						</dd>
-						<dt>Time:</dt>
-						<dd>
-							<?php $eventStartDate = new DateTime(get_the_date('Y-m-d H:i:sP'));
+		<div class="row">
+			<div class="col-md-12 entry-content" style="background-color:rgb(250,250,250); border-color:rgb(238,238,238); border-style:solid;border-width:thin; margin-top:20px;">
+				<div class="col-md-4">
+					<div class="event_meta_block">
+						<div class="event_meta_heading" style="padding-bottom:5px;">
+							<strong>Details</strong>
+						</div>
+						<dl>
+							<dt>Date:</dt>
+							<dd>
+								<?php echo get_the_date("F j");?>
+							</dd>
+							<dt>Time:</dt>
+							<dd>
+								<?php $eventStartDate = new DateTime(get_the_date('Y-m-d H:i:sP'));
                             $eventEndDate = clone($eventStartDate);
                             $hours = get_field('duration');
                             $seconds = $hours * 60 * 60;
@@ -98,16 +99,16 @@ $image_id = get_post_thumbnail_id();
                             $fmt = "g:ia";
                             echo $eventStartDate->format($fmt) . " - " .$eventEndDate->format($fmt);
                              ?>
-						</dd>
-					</dl>
+							</dd>
+						</dl>
+					</div>
 				</div>
-			</div>
-			<div class="col-md-4">
-				<div class="event_meta_heading" style="padding-bottom:5px;">
-					<strong>Venue</strong>
-				</div>
-				<dl>
-					<?php
+				<div class="col-md-4">
+					<div class="event_meta_heading" style="padding-bottom:5px;">
+						<strong>Venue</strong>
+					</div>
+					<dl>
+						<?php
 $venues = get_field('venue');
 if (sizeof($venues) > 0) {
     $venueID = $venues[0];
@@ -118,56 +119,57 @@ if (sizeof($venues) > 0) {
     $zip_code = get_field('zip_code', $venueID);
     $combined_address = $address . ' ' . $city . ' ' . $state . ' ' . $zip_code;
     $google_url = "https://www.google.com/maps/place/" . $combined_address; ?>
-					<dd>
-						<?php echo get_the_title($venueID) ?>
-					</dd>
-					<dd>
-						<?php echo $address . "<br>"; ?>
-						<?php if ($address2) {
+						<dd>
+							<?php echo get_the_title($venueID) ?>
+						</dd>
+						<dd>
+							<?php echo $address . "<br>"; ?>
+							<?php if ($address2) {
         echo $address2 . "<br>";
     } ?>
 
-						<?php echo $city; ?>
-						<?php if ($state) {
+							<?php echo $city; ?>
+							<?php if ($state) {
         echo ", " . $state;
     } ?>
-						<?php echo $zip_code; ?>
-						<br>
-						<?php if ($address && $city && $state && $zip_code) {
+							<?php echo $zip_code; ?>
+							<br>
+							<?php if ($address && $city && $state && $zip_code) {
         ?>
-						<a target="0" href=" <?php echo $google_url ?> ">+ Google Maps</a>
-						<?php
+							<a target="0" href=" <?php echo $google_url ?> ">+ Google Maps</a>
+							<?php
     } ?>
 
-					</dd>
+						</dd>
 
-					<?php
+						<?php
 }?>
 
-				</dl>
-			</div>
-			<div class="col-md-4">
-				<?php 
+					</dl>
+				</div>
+				<div class="col-md-4">
+					<?php 
             $organizers = get_field('organizers');
             $numOrganizers = sizeof($organizers);
             if ($numOrganizers > 0) {
                 ?>
-				<div class="event_meta_heading" style="padding-bottom:5px;">
-					<strong>
-						<?php echo($numOrganizers > 1 ? "Organizers" : "Organizer") ?>
-					</strong>
-				</div>
-				<dl>
-					<?php foreach ($organizers as $organizerID) {
+					<div class="event_meta_heading" style="padding-bottom:5px;">
+						<strong>
+							<?php echo($numOrganizers > 1 ? "Organizers" : "Organizer") ?>
+						</strong>
+					</div>
+					<dl>
+						<?php foreach ($organizers as $organizerID) {
                     ?>
-					<dd>
-						<?php echo get_the_title($organizerID); ?>
-					</dd>
-					<?php
+						<dd>
+							<?php echo get_the_title($organizerID); ?>
+						</dd>
+						<?php
                 } ?>
-				</dl>
-				<?php
+					</dl>
+					<?php
             } ?>
+				</div>
 			</div>
 		</div>
 		<!-- End Event Meta -->
@@ -179,46 +181,72 @@ if (sizeof($venues) > 0) {
         
         if ($numBios > 0) {
             ?>
-		<div class="col-md-12 entry-content" style="background-color:rgb(250,250,250); border-color:rgb(238,238,238); border-style:solid;border-width:thin; margin-top:20px;">
-			<div class="bio-header">
-				Related
-				<?php echo($numBios > 1 ? "Biographies" : "Biography"); ?>
-			</div>
+		<h3 itemprop="headline" class="entry-title single-title">
+			Related
+			<?php echo($numBios > 1 ? "Biographies" : "Biography"); ?>
+		</h3>
+		<div class="colored-line-left"></div>
+		<div class="clearfix"></div>
+		<div style="background-color:rgb(250,250,250); border-color:rgb(238,238,238); border-style:solid;border-width:thin; margin-top:20px;">
+			<!-- div class="col-md-12 entry-content" -->
+
+
 			<?php foreach ($bios as $bioID) {
                 $bioImageID = get_post_thumbnail_id($bioID);
-                $bioImageUrl = wp_get_attachment_image_src($bioImageID, 'parallax-one-post-thumbnail-big', true); ?>
-			<div class="bio-content">
-				<div class="col-md-4">
-					<picture itemscope itemprop="image">
-						<!--source media="(max-width: 600px)" srcset="<?php echo esc_url($image_url_mobile[0]); ?>" -->
-						<img src="<?php echo esc_url($bioImageUrl[0]); ?>">
-					</picture>
+                $bioImageUrl = wp_get_attachment_image_src($bioImageID, 'parallax-one-post-thumbnail-big', true);
+                $bioPost = get_post($bioID); ?>
+			<div class="bio-container" style="margin-top:30px; margin-bottom:30px; ">
+				<div class="row bio-content-container">
+					<div class="col-md-4">
+						<picture itemscope itemprop="image">
+							<img src="<?php echo esc_url($bioImageUrl[0]); ?>">
+						</picture>
+					</div>
+					<div class="col-md-8">
+						<?php echo $bioPost->post_content; ?>
+					</div>
 				</div>
-				<div class="col-md-8">
-					<?php
-                //stupid. there isn't a get_the_content(postID) method so i have to reget the post and do stuff.
-                $content_post = get_post($bioID);
-                $content = $content_post->post_content;
-                echo $content; ?>
+				<!-- End Individual Bio -->
+				<?php
+                $amazonIdStr = get_field("amazon_ids", $bioID);
+                if ($amazonIdStr) {
+                    $amazonIds = explode("\n", $amazonIdStr);
+                    $numAmazonIds = sizeof($amazonIds);
+                    if ($numAmazonIds > 0) {
+                        ?>
+				<div class="row bio-book-container" style="margin-top:20px;">
+					<div class="col-md-12">
+						<?php
+                        foreach ($amazonIds as $amazonId) {
+                            ?>
+						<div class="col-md-2">
 
+							<img src="<?php echo " https://images-na.ssl-images-amazon.com/images/P/ " . $amazonId . ".jpg
+							 " ; ?>">
+						</div>
+						<?php
+                        } ?>
+					</div>
 				</div>
+				<?php
+                    }
+                } ?>
 			</div>
 			<?php
-            } ?>
+            } // end foreach $bioID?>
+			<!-- /div -->
+
+			<?php
+        } // end if $numBios > 0
+         ?>
+			<!-- End Bio Section -->
 
 		</div>
-		<?php
-        }
-         ?>
+		<!-- .entry-content -->
 
-		<!-- End Bio Section -->
-
-	</div>
-	<!-- .entry-content -->
-
-	<footer class="entry-footer">
-		<?php parallax_one_entry_footer();?>
-	</footer>
-	<!-- .entry-footer -->
+		<footer class="entry-footer">
+			<?php parallax_one_entry_footer();?>
+		</footer>
+		<!-- .entry-footer -->
 </article>
 <!-- #post-## -->
