@@ -110,39 +110,41 @@ $image_id = get_post_thumbnail_id();
 					<dl>
 						<?php
 $venues = get_field('venue');
-if (sizeof($venues) > 0) {
-    $venueID = $venues[0];
-    $address = get_field('address', $venueID);
-    $address2 = get_field('address2', $venueID);
-    $city = get_field('city', $venueID);
-    $state = get_field('state', $venueID);
-    $zip_code = get_field('zip_code', $venueID);
-    $combined_address = $address . ' ' . $city . ' ' . $state . ' ' . $zip_code;
-    $google_url = "https://www.google.com/maps/place/" . $combined_address; ?>
+if ($venues) {
+    if (sizeof($venues) > 0) {
+        $venueID = $venues[0];
+        $address = get_field('address', $venueID);
+        $address2 = get_field('address2', $venueID);
+        $city = get_field('city', $venueID);
+        $state = get_field('state', $venueID);
+        $zip_code = get_field('zip_code', $venueID);
+        $combined_address = $address . ' ' . $city . ' ' . $state . ' ' . $zip_code;
+        $google_url = "https://www.google.com/maps/place/" . $combined_address; ?>
 						<dd>
 							<?php echo get_the_title($venueID) ?>
 						</dd>
 						<dd>
 							<?php echo $address . "<br>"; ?>
 							<?php if ($address2) {
-        echo $address2 . "<br>";
-    } ?>
+            echo $address2 . "<br>";
+        } ?>
 
 							<?php echo $city; ?>
 							<?php if ($state) {
-        echo ", " . $state;
-    } ?>
+            echo ", " . $state;
+        } ?>
 							<?php echo $zip_code; ?>
 							<br>
 							<?php if ($address && $city && $state && $zip_code) {
-        ?>
+            ?>
 							<a target="0" href=" <?php echo $google_url ?> ">+ Google Maps</a>
 							<?php
-    } ?>
+        } ?>
 
 						</dd>
 
 						<?php
+    }
 }?>
 
 					</dl>
@@ -150,9 +152,10 @@ if (sizeof($venues) > 0) {
 				<div class="col-md-4">
 					<?php 
             $organizers = get_field('organizers');
-            $numOrganizers = sizeof($organizers);
-            if ($numOrganizers > 0) {
-                ?>
+            if ($organizers) {
+                $numOrganizers = sizeof($organizers);
+                if ($numOrganizers > 0) {
+                    ?>
 					<div class="event_meta_heading" style="padding-bottom:5px;">
 						<strong>
 							<?php echo($numOrganizers > 1 ? "Organizers" : "Organizer") ?>
@@ -160,15 +163,16 @@ if (sizeof($venues) > 0) {
 					</div>
 					<dl>
 						<?php foreach ($organizers as $organizerID) {
-                    ?>
+                        ?>
 						<dd>
 							<?php echo get_the_title($organizerID); ?>
 						</dd>
 						<?php
-                } ?>
+                    } ?>
 					</dl>
 					<?php
-            } ?>
+                }
+            }?>
 				</div>
 			</div>
 		</div>
@@ -177,10 +181,11 @@ if (sizeof($venues) > 0) {
 		<!-- Bio Section -->
 		<?php 
         $bios = get_field('bios');
-        $numBios = sizeof($bios);
+        if ($bios) {
+            $numBios = sizeof($bios);
         
-        if ($numBios > 0) {
-            ?>
+            if ($numBios > 0) {
+                ?>
 		<h3 itemprop="headline" class="entry-title single-title">
 			Related
 			<?php echo($numBios > 1 ? "Biographies" : "Biography"); ?>
@@ -192,9 +197,9 @@ if (sizeof($venues) > 0) {
 
 
 			<?php foreach ($bios as $bioID) {
-                $bioImageID = get_post_thumbnail_id($bioID);
-                $bioImageUrl = wp_get_attachment_image_src($bioImageID, 'parallax-one-post-thumbnail-big', true);
-                $bioPost = get_post($bioID); ?>
+                    $bioImageID = get_post_thumbnail_id($bioID);
+                    $bioImageUrl = wp_get_attachment_image_src($bioImageID, 'parallax-one-post-thumbnail-big', true);
+                    $bioPost = get_post($bioID); ?>
 			<div class="bio-container" style="margin-top:30px; margin-bottom:30px; ">
 				<div class="row bio-content-container">
 					<div class="col-md-4">
@@ -209,11 +214,11 @@ if (sizeof($venues) > 0) {
 				<!-- End Individual Bio -->
 				<?php
                 $amazonIdStr = get_field("amazon_ids", $bioID);
-                if ($amazonIdStr) {
-                    $amazonIds = explode("\n", $amazonIdStr);
-                    $numAmazonIds = sizeof($amazonIds);
-                    if ($numAmazonIds > 0) {
-                        ?>
+                    if ($amazonIdStr) {
+                        $amazonIds = explode("\n", $amazonIdStr);
+                        $numAmazonIds = sizeof($amazonIds);
+                        if ($numAmazonIds > 0) {
+                            ?>
 				<div class="row bio-book-container" style="margin-top:20px;">
 					<div class="col-md-12">
 						<?php
@@ -229,15 +234,16 @@ if (sizeof($venues) > 0) {
 					</div>
 				</div>
 				<?php
-                    }
-                } ?>
+                        }
+                    } ?>
 			</div>
 			<?php
-            } // end foreach $bioID?>
+                } // end foreach $bioID?>
 			<!-- /div -->
 
 			<?php
-        } // end if $numBios > 0
+            } // end if $numBios > 0
+        } // end if $bios
          ?>
 			<!-- End Bio Section -->
 
