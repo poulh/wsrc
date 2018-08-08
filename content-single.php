@@ -220,16 +220,21 @@ if ($venues) {
 								</strong>
 							</dt>
 							<?php 
-                                $social_media = array("amazon_authors_page", "twitter", "facebook", "website");
-                    $social_title = array("Amazon Author's Page", "Twitter", "Facebook", "Website");
+                                $social_fields = array("amazon_authors_page", "twitter", "facebook", "website");
+                    $social_tooltips = array("%s Amazon Homepage: Proceeds benefit club!", "%s on Twitter", "%s on Facebook", "%s's Website");
                     $social_icons = array("fa fa-amazon", "fa fa-twitter", "fa fa-facebook", "fa fa-globe");
                     
-                    foreach ($social_media as $idx=>$social_field) {
+                    foreach ($social_fields as $idx=>$social_field) {
+                        $social_tooltip = sprintf($social_tooltips[$idx], $bioPost->post_title);
                         $social_url = get_field($social_field, $bioID);
+                        if ($social_field == "amazon_authors_page") {
+                            //todo: hacky having the amazon associates tag hard coded. will fix later.
+                            $social_url = $social_url . "?tag=westsidegop20-20";
+                        }
                         if ($social_url) {
                             ?>
-							<a target="0" href="<?php echo $social_url; ?>">
-								<i class="<?php echo $social_icons[$idx] ?>"></i>
+							<a target="0" title="<?php echo $social_tooltip; ?>" href="<?php echo $social_url; ?>">
+								<i class="<?php echo $social_icons[$idx] ?> fa-lg"></i>
 							</a>
 							<?php
                         } ?>
