@@ -261,11 +261,11 @@ if ($venues) {
 							<?php echo $bioPost->post_title; ?>'s
 							<?php if ($numAmazonIds > 1) {
                                 ?>
-							Books
+							books
 							<?php
                             } else {
                                 ?>
-							Book
+							book
 							<?php
                             } ?>
 							from Amazon.</strong>
