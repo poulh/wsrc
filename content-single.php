@@ -186,10 +186,10 @@ if ($venues) {
         
             if ($numBios > 0) {
                 ?>
-		<h3 itemprop="headline" class="entry-title single-title">
+		<h4 itemprop="headline" class="entry-title single-title">
 			Related
 			<?php echo($numBios > 1 ? "Biographies" : "Biography"); ?>
-		</h3>
+		</h4>
 		<div class="colored-line-left"></div>
 		<div class="clearfix"></div>
 		<div style="background-color:rgb(250,250,250); border-color:rgb(238,238,238); border-style:solid;border-width:thin; margin-top:20px;">
@@ -206,6 +206,30 @@ if ($venues) {
 						<picture itemscope itemprop="image">
 							<img src="<?php echo esc_url($bioImageUrl[0]); ?>">
 						</picture>
+						<dl>
+							<dt>
+								<strong>
+									<?php echo $bioPost->post_title; ?>
+								</strong>
+							</dt>
+							<?php 
+                                $social_media = array("amazon_authors_page", "twitter", "facebook", "website");
+                    $social_title = array("Amazon Author's Page", "Twitter", "Facebook", "Website");
+                    $social_icons = array("fa fa-amazon", "fa fa-twitter", "fa fa-facebook", "fa fa-globe");
+                    
+                    foreach ($social_media as $idx=>$social_field) {
+                        $social_url = get_field($social_field, $bioID);
+                        if ($social_url) {
+                            ?>
+							<a target="0" href="<?php echo $social_url; ?>">
+								<i class="<?php echo $social_icons[$idx] ?>"></i>
+							</a>
+							<?php
+                        } ?>
+							<?php
+                    } ?>
+
+						</dl>
 					</div>
 					<div class="col-md-8">
 						<?php echo $bioPost->post_content; ?>
@@ -219,18 +243,42 @@ if ($venues) {
                         $numAmazonIds = sizeof($amazonIds);
                         if ($numAmazonIds > 0) {
                             ?>
-				<div class="row bio-book-container" style="margin-top:20px;">
+				<div class="row bio-book-container" style="margin-top:20px; margin-bottom:10px;">
+					<div class="col-md-12">
+						<strong> Click to buy
+							<?php echo $bioPost->post_title; ?>'s
+							<?php if ($numAmazonIds > 1) {
+                                ?>
+							Books
+							<?php
+                            } else {
+                                ?>
+							Book
+							<?php
+                            } ?>
+							from Amazon.</strong>
+
+
+					</div>
+				</div>
+				<div class="row">
 					<div class="col-md-12">
 						<?php
                         foreach ($amazonIds as $amazonId) {
                             ?>
 						<div class="col-md-2">
-
-							<img src="<?php echo " https://images-na.ssl-images-amazon.com/images/P/ " . $amazonId . ".jpg
-							 " ; ?>">
+							<a target="0" href="https://www.amazon.com/gp/product/<?php echo $amazonId ?>?tag=westsidegop20-20">
+								<img src="<?php echo " https://images-na.ssl-images-amazon.com/images/P/ " . $amazonId . ".jpg
+								 " ; ?>">
+							</a>
 						</div>
 						<?php
                         } ?>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<h6>Proceeds from each purchase benefit the club!</h6>
 					</div>
 				</div>
 				<?php
