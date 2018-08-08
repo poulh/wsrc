@@ -28,7 +28,13 @@ $image_id = get_post_thumbnail_id();
 // only show the date box for events
     $parentCategory = get_the_category()[0];
     if ($parentCategory && $parentCategory->slug == "event") {
-        ?>
+        $now = new DateTime();
+        if ($now->format("%Y-%m-%d") > get_the_time("%Y-%m-%d")) {
+            ?>
+			<div class="img-ribbon-upper-left">Past Event</div>
+			<?php
+        } else {
+            ?>
 			<div class="post-date entry-published updated">
 				<span class="post-date-day">
 					<?php the_time('d'); ?>
@@ -38,6 +44,7 @@ $image_id = get_post_thumbnail_id();
 				</span>
 			</div>
 			<?php
+        }
     } ?>
 
 		</div>
