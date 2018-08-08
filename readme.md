@@ -1,6 +1,6 @@
 # WSRC - Based on Parallax One
 
-Contributors:           codeinwp
+Contributors:           phornsleth
 
 Tags:				black, blue, gray, white, light, responsive-layout, one-column, two-columns, right-sidebar, custom-background, custom-colors, custom-menu, featured-images, front-page-post-form, full-width-template, rtl-language-support, threaded-comments, translation-ready
 
