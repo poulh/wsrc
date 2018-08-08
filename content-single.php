@@ -29,22 +29,29 @@ $image_id = get_post_thumbnail_id();
     $parentCategory = get_the_category()[0];
     if ($parentCategory && $parentCategory->slug == "event") {
         $now = new DateTime();
-        if ($now->format("%Y-%m-%d") > get_the_time("%Y-%m-%d")) {
-            ?>
-			<div class="img-ribbon-upper-left">Past Event</div>
-			<?php
-        } else {
-            ?>
-			<div class="post-date entry-published updated">
-				<span class="post-date-day">
-					<?php the_time('d'); ?>
-				</span>
-				<span class="post-date-month">
-					<?php the_time('M'); ?>
-				</span>
+        $dateText = "Past Event";
+        $backgroundColor = "background-color-alt";
+        // if now is before the event's date ( including day of )
+        if ($now->format("%Y-%m-%d") <= get_the_time("%Y-%m-%d")) {
+            $backgroundColor = "background-color-primary";
+            $number = get_the_time('j');
+        
+            $abbreviation = $number. 'th';
+            $ends = array('th','st','nd','rd','th','th','th','th','th','th');
+            if (($number %100) >= 11 && ($number%100) <= 13) {
+                // do nothing
+            } else {
+                $abbreviation = $number. $ends[$number % 10];
+            }
+            
+            $dateText = get_the_time('M') . " " . $abbreviation;
+        } ?>
+			<div class="img-ribbon ribbon-upper-left <?php echo $backgroundColor ?> color-white">
+				<?php echo $dateText ?>
 			</div>
+			<div class="img-ribbon ribbon-upper-right background-color-primary color-white">Sold Out!</div>
+
 			<?php
-        }
     } ?>
 
 		</div>
