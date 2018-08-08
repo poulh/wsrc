@@ -1,4 +1,4 @@
-# Parallax One
+# WSRC - Based on Parallax One
 
 Contributors:           codeinwp
 
