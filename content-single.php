@@ -27,12 +27,13 @@ $image_id = get_post_thumbnail_id();
 			<?php
 // only show the date box for events
     $parentCategory = get_the_category()[0];
+    $now = new DateTime();
+    $upcomingEvent = $now->format("%Y-%m-%d") <= get_the_time("%Y-%m-%d");
     if ($parentCategory && $parentCategory->slug == "event") {
-        $now = new DateTime();
         $dateText = "Past Event";
         $backgroundColor = "background-color-alt";
         // if now is before the event's date ( including day of )
-        if ($now->format("%Y-%m-%d") <= get_the_time("%Y-%m-%d")) {
+        if ($upcomingEvent) {
             $backgroundColor = "background-color-primary";
             $number = get_the_time('j');
         
@@ -49,7 +50,17 @@ $image_id = get_post_thumbnail_id();
 			<div class="img-ribbon ribbon-upper-left <?php echo $backgroundColor ?> color-white">
 				<?php echo $dateText ?>
 			</div>
+
+
+			<?php $soldOut = get_field("sold_out");
+        if ($soldOut) {
+            ?>
+
 			<div class="img-ribbon ribbon-upper-right background-color-primary color-white">Sold Out!</div>
+			<?php
+        } ?>
+
+
 
 			<?php
     } ?>
@@ -87,6 +98,19 @@ $image_id = get_post_thumbnail_id();
 
 	<div itemprop="text" class="entry-content">
 		<?php the_content();?>
+		<?php
+        $purchaseUrl = get_field("purchase_url");
+        $memberCost = get_field("member_price");
+        $guestCost = get_field("guest_price");
+        $doorCost = get_field("door_price");
+        $hasCost = $memberCost || $guestCost || $doorcost;
+        $canPurchaseOnline = $hasCost && $purchaseUrl && !$soldOut && $upcomingEvent;
+        if ($canPurchaseOnline) {
+            ?>
+		<a target="0" href="<?php echo $purchaseUrl; ?>">Purchase Tickets</a>
+		<?php
+        }
+         ?>
 
 		<!-- Event Meta -->
 		<div class="row">
@@ -114,6 +138,9 @@ $image_id = get_post_thumbnail_id();
                             echo $eventStartDate->format($fmt) . " - " .$eventEndDate->format($fmt);
                              ?>
 							</dd>
+
+
+
 						</dl>
 					</div>
 				</div>
@@ -181,6 +208,32 @@ if ($venues) {
 						<dd>
 							<?php echo get_the_title($organizerID); ?>
 						</dd>
+
+						<?php 
+                            
+                        if ($hasCost) {
+                            ?>
+						<dt>Cost:
+						</dt>
+						<dd>
+							<?php echo($memberCost ? "Member Price: $" . $memberCost : ""); ?>
+							<br>
+							<?php echo($guestCost ? "Guest Price: $" . $guestCost : ""); ?>
+							<br>
+							<?php echo($doorCost ? "Door Price: $" . $doorCost : ""); ?>
+							<?php
+                                     if ($canPurchaseOnline) {
+                                         ?>
+							<dd>
+								<a target="0" href="<?php echo $purchaseUrl; ?>">Purchase Tickets</a>
+							</dd>
+							<?php
+                                     } ?>
+						</dd>
+						<?php
+                        } ?>
+
+
 						<?php
                     } ?>
 					</dl>
