@@ -103,7 +103,7 @@ $image_id = get_post_thumbnail_id();
         $memberCost = get_field("member_price");
         $guestCost = get_field("guest_price");
         $doorCost = get_field("door_price");
-        $hasCost = $memberCost || $guestCost || $doorcost;
+        $hasCost = $memberCost || $guestCost || $doorCost;
         $canPurchaseOnline = $hasCost && $purchaseUrl && !$soldOut && $upcomingEvent;
         if ($canPurchaseOnline) {
             ?>
@@ -206,7 +206,20 @@ if ($venues) {
 						<?php foreach ($organizers as $organizerID) {
                         ?>
 						<dd>
-							<?php echo get_the_title($organizerID); ?>
+							<?php $organizerName = get_the_title($organizerID);
+                        echo $organizerName;
+                        $organizerEmail = get_field("email", $organizerID);
+                        if ($organizerEmail) {
+                            //todo: there is a bug here. if 'get_the_title()' includs an ampersand (&) the mailto will cut off the rest of the string.
+                            //however, str_replace does not work as it seems wordpress stores the & as &amp;.  searching/replacing that string also doesn't work. its very frustrating.
+                            //spent an hour on it and am giving up. PH
+                            $emailUrl = 'mailto:' . $organizerEmail . '?subject=' . get_the_title(); ?>
+							<a href="<?php echo $emailUrl; ?>">
+								<i class="fa fa-envelope"></i>
+							</a>
+
+							<?php
+                        } ?>
 						</dd>
 
 						<?php 
@@ -280,19 +293,23 @@ if ($venues) {
 								</strong>
 							</dt>
 							<?php 
-                                $social_fields = array("amazon_authors_page", "twitter", "facebook", "website");
-                    $social_tooltips = array("%s Amazon Homepage: Proceeds benefit club!", "%s on Twitter", "%s on Facebook", "%s's Website");
-                    $social_icons = array("fa fa-amazon", "fa fa-twitter", "fa fa-facebook", "fa fa-globe");
-                    
+                                $social_fields = array("amazon_authors_page", "twitter", "facebook", "website","email");
+                    $social_tooltips = array("%s Amazon Homepage: Proceeds benefit club!", "%s on Twitter", "%s on Facebook", "%s's Website", "Email %s");
+                    $social_icons = array("fa fa-amazon", "fa fa-twitter", "fa fa-facebook", "fa fa-globe", "fa fa-envelope");
+                    $amazonAffiliateTag = 'westsidegop20-20';
+                    $affiliateUrlParam = '?tag=' . $amazonAffiliateTag;
                     foreach ($social_fields as $idx=>$social_field) {
-                        $social_tooltip = sprintf($social_tooltips[$idx], $bioPost->post_title);
+                        $social_tooltip = sprintf($social_tooltips[$idx], $bioPost->post_title, $affiliateUrlParam);
                         $social_url = get_field($social_field, $bioID);
-                        if ($social_field == "amazon_authors_page") {
-                            //todo: hacky having the amazon associates tag hard coded. will fix later.
-                            $social_url = $social_url . "?tag=westsidegop20-20";
-                        }
+                        
                         if ($social_url) {
-                            ?>
+                            if ($social_field == "email") {
+                                //todo: this is a bit hacky
+                                $social_url = 'mailto:' . $social_url;
+                            } elseif ($social_field == "amazon_authors_page") {
+                                //todo also hacky
+                                $social_url = $social_url . $affiliateUrlParam;
+                            } ?>
 							<a target="0" title="<?php echo $social_tooltip; ?>" href="<?php echo $social_url; ?>">
 								<i class="<?php echo $social_icons[$idx] ?> fa-lg"></i>
 							</a>
