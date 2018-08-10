@@ -5,7 +5,6 @@
  * @package parallax-one
  */
 ?>
-<?php the_ID()?>
 <!-- A2: content-single.php Displays a single post -->
 <article id="post-<?php the_ID();?>" <?php post_class(
  'content-single-page'
@@ -138,7 +137,21 @@ $image_id = get_post_thumbnail_id();
                             echo $eventStartDate->format($fmt) . " - " .$eventEndDate->format($fmt);
                              ?>
 							</dd>
+							<?php $eventUrl = get_field('website');
+                            if ($eventUrl) {
+                                ?>
+							<dt>
+								Website:
+							</dt>
+							<dd>
+								<a target="0" href="<?php echo $eventUrl; ?>">Visit Website*</a>
+							</dd>
+							<dd>
+								<h6>*Not affiliated with the club.</h6>
+							</dd>
 
+							<?php
+                            } ?>
 
 
 						</dl>
