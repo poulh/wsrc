@@ -117,7 +117,7 @@ the_title();
 
 
 <?php if(!is_single() ) { ?>
-                          </div>
+
                 </a>
 <?php } ?>
 
