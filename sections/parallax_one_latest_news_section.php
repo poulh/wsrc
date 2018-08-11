@@ -79,12 +79,12 @@ if ( $the_query->have_posts() ) {
 										$has_category = !empty($categories);
 										$the_title = the_title('','',false); /*false means just return the title. two empty strings are prefix and suffix*/
 										$post_title = $the_title;
-										if( $has_category) {
-											foreach( $categories as $category ) {
-												$post_title = $category->name . ': ' . $the_title; 
-											}
-										}
-										;
+										// if( $has_category) {
+										// 	foreach( $categories as $category ) {
+										// 		$post_title = $category->name . ': ' . $the_title; 
+										// 	}
+										// }
+										// ;
 										?>
 										<?php ;/* translators: %s is post name */ ?>
 										<div itemscope itemprop="blogPosts" itemtype="http://schema.org/BlogPosting" id="post-<?php the_ID(); ?>" class="timeline-box-wrap" title="<?php printf( esc_html__( '%s', 'parallax-one' ), $post_title ); ?>"
@@ -99,7 +99,7 @@ if ( $the_query->have_posts() ) {
 
  <?php } ?>
 									
-												<?php 		the_date('D M, j g:iA');?>
+												<?php 		the_date('D M j g:iA');?>
 												
 													
 												</div>

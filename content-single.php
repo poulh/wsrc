@@ -105,19 +105,26 @@ $numBios = sizeof( $postBios );
 
         <?php
 } ?>
-<h2 itemprop="headline" class="entry-title single-title">
+
+
+                    <h2 itemprop="headline" class="entry-title single-title">
 <?php
-                             if( !is_single() && !is_archive()) { echo $postName . ": "; }
+                                                 if( !is_single() && !is_archive()) { echo $postName . ": "; }
 the_title();
 ?>
 </h2>
+
+
+
 <?php if(!is_single() ) { ?>
+                          </div>
                 </a>
 <?php } ?>
 
 
         <div class="colored-line-left"></div>
         <div class="clearfix"></div>
+
 
         <div class="entry-meta single-entry-meta">
             <span class="author-link" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -145,6 +152,14 @@ the_title();
 
     <div itemprop="text" class="entry-content">
 <?php is_single() ? the_content() : the_excerpt();?>
+
+                              <?php if( $parentSlug == "bio" ) { ?>
+
+<?php  $bioID = get_the_ID(); $bioName = get_the_title();  include( locate_template( 'content-social.php', false, false ) ); ?>
+
+<?php } ?>
+
+
         <?php
                               if( is_single() && $postSlug == "event" ) {
         $purchaseUrl = get_field("purchase_url");
@@ -343,54 +358,37 @@ if ($venues) {
             <?php foreach ($postBios as $bioID) {
                     $bioImageID = get_post_thumbnail_id($bioID);
                     $bioImageUrl = wp_get_attachment_image_src($bioImageID, 'parallax-one-post-thumbnail-big', true);
-                    $bioPost = get_post($bioID); ?>
+                    $bioPost = get_post($bioID);
+                    $bioName = $bioPost->post_title;
+                    ?>
             <div class="bio-container" style="margin-top:30px; margin-bottom:30px; ">
-
-                <div class="row bio-content-container">
-                    <div class="col-md-4">
 <?php if($displayBioContent) { ?>
+                <div class="row bio-content-container">
+                               <a href="<?php echo get_post_permalink($bioID); ?>">
+                               <div class="col-md-4">
+
                         <picture itemscope itemprop="image">
+
                             <img src="<?php echo esc_url($bioImageUrl[0]); ?>">
+
                         </picture>
                         <dl>
                             <dt>
                                 <strong>
-                                    <?php echo $bioPost->post_title; ?>
+                                    <?php echo $bioName; ?>
                                 </strong>
                             </dt>
-<?php } ?>
-                            <?php
-                                $social_fields = array("amazon_authors_page", "twitter", "facebook", "website","email");
-                    $social_tooltips = array("%s Amazon Homepage: Proceeds benefit club!", "%s on Twitter", "%s on Facebook", "%s's Website", "Email %s");
-                    $social_icons = array("fa fa-amazon", "fa fa-twitter", "fa fa-facebook", "fa fa-globe", "fa fa-envelope");
-                    $amazonAffiliateTag = 'westsidegop20-20';
-                    $affiliateUrlParam = '?tag=' . $amazonAffiliateTag;
-                    foreach ($social_fields as $idx=>$social_field) {
-                        $social_tooltip = sprintf($social_tooltips[$idx], $bioPost->post_title, $affiliateUrlParam);
-                        $social_url = get_field($social_field, $bioID);
 
-                        if ($social_url) {
-                            if ($social_field == "email") {
-                                //todo: this is a bit hacky
-                                $social_url = 'mailto:' . $social_url;
-                            } elseif ($social_field == "amazon_authors_page") {
-                                //todo also hacky
-                                $social_url = $social_url . $affiliateUrlParam;
-                            } ?>
-                            <a target="0" title="<?php echo $social_tooltip; ?>" href="<?php echo $social_url; ?>">
-                                <i class="<?php echo $social_icons[$idx] ?> fa-lg"></i>
-                            </a>
-                            <?php
-                        } ?>
-                            <?php
-                    } ?>
+                          <?php  include( locate_template( 'content-social.php', false, false ) ); ?>
 
                         </dl>
                     </div>
+                               </a>        
                     <div class="col-md-8">
 
-<?php if( $displayBioContent ) { echo apply_filters( 'the_excerpt', $bioPost->post_content ); } ?>
+<?php echo apply_filters( 'the_excerpt', $bioPost->post_content ); ?>
                     </div>
+                                                      <?php } ?>
                 </div>
                 <!-- End Individual Bio -->
                 <?php
