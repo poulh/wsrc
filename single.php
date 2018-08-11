@@ -43,10 +43,10 @@
 
 					<div class="nav-links">
 						<div class="nav-previous">
-							<?php previous_post_link('&laquo; %link', '%title', true);?>
+<?php previous_post_link('&laquo; %link', '%title', true,'25');?>
 						</div>
 						<div class="nav-next">
-							<?php next_post_link('%link &raquo;', '%title', true);?>
+<?php next_post_link('%link &raquo;', '%title', true,'25');?>
 						</div>
 					</div>
 				</nav>
