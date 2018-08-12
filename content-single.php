@@ -72,7 +72,6 @@ $numBios = sizeof( $postBios );
             </picture>
             <?php
 
-
     $upcomingEvent = $now->format("Y-m-d") <= get_the_time("Y-m-d");
     if ($postSlug == "event") {
         $dateText = "Past Event";
@@ -168,6 +167,7 @@ the_title();
         $doorCost = get_field("door_price");
         $hasCost = $memberCost || $guestCost || $doorCost;
         $canPurchaseOnline = $hasCost && $purchaseUrl && !$soldOut && $upcomingEvent;
+
         if ($canPurchaseOnline) {
             ?>
         <a target="0" href="<?php echo $purchaseUrl; ?>">Purchase Tickets</a>
@@ -284,13 +284,18 @@ if ($venues) {
                         <?php foreach ($organizers as $organizerID) {
                         ?>
                         <dd>
-                            <?php $organizerName = get_the_title($organizerID);
-                        echo $organizerName;
+                            <?php
+                        echo get_the_title($organizerID); ?>
+                        <a href="<?php echo get_post_permalink($organizerID); ?>">
+                        <i class="fa fa-info-circle"></i>
+                        </a>
+<?php
                         $organizerEmail = get_field("email", $organizerID);
                         if ($organizerEmail) {
                             //todo: there is a bug here. if 'get_the_title()' includs an ampersand (&) the mailto will cut off the rest of the string.
                             //however, str_replace does not work as it seems wordpress stores the & as &amp;.  searching/replacing that string also doesn't work. its very frustrating.
                             //spent an hour on it and am giving up. PH
+
                             $emailUrl = 'mailto:' . $organizerEmail . '?subject=' . get_the_title(); ?>
                             <a href="<?php echo $emailUrl; ?>">
                                 <i class="fa fa-envelope"></i>
@@ -300,8 +305,13 @@ if ($venues) {
                         } ?>
                         </dd>
 
-                        <?php
 
+
+
+
+                        <?php
+                    } ?>
+                                  <?php
                         if ($hasCost) {
                             ?>
                         <dt>Cost:
@@ -324,9 +334,6 @@ if ($venues) {
                         <?php
                         } ?>
 
-
-                        <?php
-                    } ?>
                     </dl>
                     <?php
                 }
@@ -383,10 +390,19 @@ if ($venues) {
 
                         </dl>
                     </div>
-                               </a>        
+                               </a>
                     <div class="col-md-8">
 
-<?php echo apply_filters( 'the_excerpt', $bioPost->post_content ); ?>
+<?php
+                               //this is a hack. i can't get get_the_excerpt() to work so i looked up how it works and made my own :-(
+                               $bioWords = explode(" ",$bioPost->post_content);
+                               if(count($bioWords) > 55 ) {
+                                   $bioWords = array_slice($bioWords,0,55);
+                                   array_push($bioWords,"[&hellip;]");
+                               }
+
+                               echo implode(" ", $bioWords); ?>
+
                     </div>
                                                       <?php } ?>
                 </div>
