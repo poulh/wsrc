@@ -416,7 +416,7 @@ if ($venues) {
                             ?>
                 <div class="row bio-book-container" style="margin-top:20px; margin-bottom:10px;">
                     <div class="col-md-12">
-                        <strong> Click to buy
+                        <strong>Click to buy
 <?php echo $bioPost->post_title; ?>&apos;s <!-- &apos; is an apostrophe... it messes up my code editor to use the real one -->
                             <?php if ($numAmazonIds > 1) {     ?>
                             books
@@ -426,7 +426,9 @@ if ($venues) {
                             book
                             <?php
                             } ?>
-                            from Amazon.</strong>
+                            from Amazon, and browse all of our books in the club's <a href="/book-store">Book Store
+
+ <i class="fa fa-book"></i></a>  </strong>
 
 
                     </div>
