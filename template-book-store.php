@@ -13,6 +13,8 @@ $args = array(
 			'compare' 	=> '!=',
 		)
 	),
+    'orderby'   => 'post_date',
+    'order' => 'DESC',
 );
 
 
@@ -28,7 +30,11 @@ $idx = 0;
 $amazonIds = explode("\n",get_field('amazon_ids'));
 
 
-foreach($amazonIds as $amazonId) { 
+foreach($amazonIds as $amazonId) {
+    $amazonId = trim($amazonId);
+    if(empty($amazonId)) {
+        continue;
+    }
     if($idx % 6 == 0 ) { ?>
 
 <?php    }    ?>
