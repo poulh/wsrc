@@ -7998,3 +7998,30 @@ p.edd-alert-error,
 		left: 97px;
 	}
 }
+
+
+// variables
+$darktan: #9A8548;
+$grad2: #373737;
+$grad1: darken($grad2, 2);
+$grad3: lighten($darktan, 4);
+$grad5: darken($darktan, 4);
+
+
+.bookshelf--frame {
+	border-left: 10px solid $darktan;
+	border-right: 10px solid $darktan;
+	text-align: center;
+}
+.book-wrapper {
+    display: inline-block;
+
+    vertical-align: bottom;
+    align:center;
+
+    position: relative;
+    margin: 5px;
+    border: 5px;
+    max-width: 100%;
+}
+

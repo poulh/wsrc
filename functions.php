@@ -545,6 +545,14 @@ function parallax_get_file( $file ) {
 	}
 }
 
+//[book-store]
+function parallax_bookstore( $attr ) {
+    ob_start();
+    get_template_part( 'template-book-store' );
+    return ob_get_clean();
+}
+add_shortcode( 'book-store', 'parallax_bookstore' );
+
 
 /**
  * WooCommerce Extra Feature
