@@ -34,7 +34,8 @@ $longDate = get_the_date('F') . " " . $abbreviation . ", " . get_the_date("Y");
 
 
 $postBios = [];
-$displayBioContent = false;
+$displayBioExcerpt = false;
+$displayBioBox = false;
 $isEvent = $postSlug == "event";
 if( $isEvent ) {
     $postBios = get_field('bios');
@@ -42,9 +43,25 @@ if( $isEvent ) {
         $postBios = [];
     }
 
-    $displayBioContent = true;
+    $displayBioExcerpt = true;
+    $displayBioBox = true; // we display the 'bio box' on an event if it has a bio... regardless of if it has books
 } elseif( $parentSlug == "bio" ) {
-    $postBios = [ get_the_ID() ];
+    $tmpID = get_the_ID();
+    $postBios = [ $tmpID ];
+
+    //if we are looking at a bio we only display the 'bio box' if that bio has books. so we have to peak in to see now to do that
+    $tmpAmazonIdStr = get_field("amazon_ids", $tmpID);
+    if ($tmpAmazonIdStr) {
+        $tmpAmazonIds = explode("\n", $tmpAmazonIdStr);
+        foreach($tmpAmazonIds as $tmpAmazonId ) {
+            $tmpAmazonId = trim($tmpAmazonId );
+            if( empty($tmpAmazonId)) {
+                continue;
+            }
+            $displayBioBox = true;
+            break;
+        }
+    }
 }
 $numBios = sizeof( $postBios );
 $isSinglePost = is_single(); // single post means its the actual posts page as opposed to a search or 'category/archive' page
@@ -235,87 +252,15 @@ if($isEvent && !$isSinglePost && !$postHasFeaturedImage) {
                         </dl>
                     </div>
                 </div>
+                                  <div class="col-md-4">
+<?php $venueField = 'venue';    include( locate_template( 'content-venue.php', false, false ) ); ?>
+                            </div>
                 <div class="col-md-4">
-                    <div class="event_meta_heading" style="padding-bottom:5px;">
-                        <strong>Venue</strong>
-                    </div>
-                    <dl>
-                        <?php
-$venues = get_field('venue');
-if ($venues) {
-    if (sizeof($venues) > 0) {
-        $venueID = $venues[0];
-        $address = get_field('address', $venueID);
-        $address2 = get_field('address2', $venueID);
-        $city = get_field('city', $venueID);
-        $state = get_field('state', $venueID);
-        $zip_code = get_field('zip_code', $venueID);
-        $combined_address = $address . ' ' . $city . ' ' . $state . ' ' . $zip_code;
-        $google_maps_url = "https://www.google.com/maps/place/" . $combined_address;
-        $apple_maps_url = "https://maps.apple.com/?q=" . $combined_address; ?>
-                        <dd>
-                            <?php echo get_the_title($venueID) ?>
-                        </dd>
-                        <dd>
-                            <?php echo $address . "<br>"; ?>
-                            <?php if ($address2) {
-            echo $address2 . "<br>";
-        } ?>
-
-                            <?php echo $city; ?>
-                            <?php if ($state) {
-            echo ", " . $state;
-        } ?>
-                            <?php echo $zip_code; ?>
-                            <br>
-                            <?php if ($address && $city && $state && $zip_code) {
-            ?>
-                                Maps: <a target="0" href=" <?php echo $google_maps_url ?> "><i class="fa fa-google"></i></a> <a  href=" <?php echo $apple_maps_url ?> "><i class="fa fa-apple"></i></a>
-
-                            <?php
-        } ?>
-
-                        </dd>
-
-                        <?php
-    }
-}?>
-
-                    </dl>
-                </div>
-                <div class="col-md-4">
-                    <?php
-            $organizers = get_field('organizers');
-            if ($organizers) {
-                $numOrganizers = sizeof($organizers);
-                if ($numOrganizers > 0) {
-                    ?>
-                    <div class="event_meta_heading" style="padding-bottom:5px;">
-                        <strong>
-                            <?php echo($numOrganizers > 1 ? "Organizers" : "Organizer") ?>
-                        </strong>
-                    </div>
-                    <dl>
-                        <?php foreach ($organizers as $organizerID) {
-                        ?>
-                        <dd>
-                            <?php
-                        $contactName = get_the_title($organizerID);
-                        echo $contactName; ?>
-                        <br>
-
-<?php $contactID = $organizerID; $contactSubject = get_the_title();
-                        include( locate_template( 'content-contact-info.php', false, false ) ); ?>
-</dd>
-
-
-
-
-                        <?php
-                    } ?>
-                                  <?php
+<?php       $organizerField = 'organizers';                include( locate_template( 'content-organizer.php', false, false ) ); ?>
+<?php
                         if ($hasCost) {
                             ?>
+                                                               <dl>
                         <dt>Cost:
                         </dt>
                         <dd>
@@ -333,31 +278,54 @@ if ($venues) {
                             <?php
                                      } ?>
                         </dd>
-                        <?php
+                    </dl>
+<?php
                         } ?>
 
-                    </dl>
-                    <?php
-                }
-            }?>
+
+                    
+
                 </div>
             </div>
         </div>
         <!-- End Event Meta -->
 
+             <!-- After Event Meta -->
+<?php if( get_field('after_event') ) { ?>
+
+             <div class="row">
+            <div class="col-md-12 entry-content" style="background-color:rgb(250,250,250); border-color:rgb(238,238,238); border-style:solid;border-width:thin; margin-top:20px;">
+            <div class="col-md-4">
+            <div class="event_meta_block">
+            <div class="event_meta_heading" style="padding-bottom:5px;">
+            <strong>After Event*</strong>
+            <dl><dd><?php echo get_field('after_event_title'); ?></dd></dl>
+                                       <dl><dd>                                <h6>*Not affiliated with the club.</h6></dd></dl>
+            </div>
+            </div>            </div>
+      <div class="col-md-4">
+<?php       $venueField = 'after_venue';                include( locate_template( 'content-venue.php', false, false ) ); ?>
+            </div>
+                        <div class="col-md-4">
+<?php       $organizerField = 'after_organizer';                include( locate_template( 'content-organizer.php', false, false ) ); ?>
+            </div>
+            </div>            </div>
+<?php } ?>
+              <!-- After Event Meta -->
 <?php } ?>
 
 <?php if($isSinglePost) { ?>
         <!-- Bio Section -->
 
-<?php if( $displayBioContent && ($numBios > 0 ) ) { ?>
+<?php if( $displayBioBox && ($numBios > 0 ) ) { ?>
+                                                <?php if($displayBioExcerpt) { ?>
         <h4 itemprop="headline" class="entry-title single-title">
             Related
             <?php echo($numBios > 1 ? "Biographies" : "Biography"); ?>
         </h4>
         <div class="colored-line-left"></div>
-
 <?php } ?>
+
         <div class="clearfix"></div>
 
         <div style="background-color:rgb(250,250,250); border-color:rgb(238,238,238); border-style:solid;border-width:thin; margin-top:20px;">
@@ -371,7 +339,7 @@ if ($venues) {
                     $bioName = $bioPost->post_title;
                     ?>
             <div class="bio-container" style="margin-top:30px; margin-bottom:30px; ">
-<?php if($displayBioContent) { ?>
+<?php if($displayBioExcerpt) { ?>
                 <div class="row bio-content-container">
                                <a href="<?php echo get_post_permalink($bioID); ?>">
                                <div class="col-md-4">
@@ -416,7 +384,7 @@ if ($venues) {
                         $numAmazonIds = sizeof($amazonIds);
                         if ($numAmazonIds > 0) {
                             ?>
-                <div class="row bio-book-container" style="margin-top:20px; margin-bottom:10px;">
+                <div class="row bio-ebook-container" style="margin-top:20px; margin-bottom:10px;">
                     <div class="col-md-12">
                         <strong>Click to buy
 <?php echo $bioPost->post_title; ?>&apos;s <!-- &apos; is an apostrophe... it messes up my code editor to use the real one -->
@@ -439,6 +407,8 @@ if ($venues) {
                     <div class="col-md-12">
                         <?php
                         foreach ($amazonIds as $amazonId) {
+$amazonId = trim($amazonId);
+if( empty($amazonId) ) { continue; }
                             ?>
                         <div class="col-md-2">
                             <a target="0" href="https://www.amazon.com/gp/product/<?php echo $amazonId ?>?tag=westsidegop20-20">
@@ -462,11 +432,8 @@ if ($venues) {
             <?php
                 } // end foreach $bioID?>
             <!-- /div -->
+<?php } ?>
 
-            <?php
-
-
-         ?>
             <!-- End Bio Section -->
 
 <?php } ?>
