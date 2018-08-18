@@ -299,7 +299,7 @@ if($isEvent && !$isSinglePost && !$postHasFeaturedImage) {
             <div class="event_meta_block">
             <div class="event_meta_heading" style="padding-bottom:5px;">
             <strong>After Event*</strong>
-            <dl><dd><?php echo get_field('after_event_title'); ?></dd></dl>
+            <dl><dd><?php echo get_field('after_title'); ?></dd></dl>
                                        <dl><dd>                                <h6>*Not affiliated with the club.</h6></dd></dl>
             </div>
             </div>            </div>
@@ -307,7 +307,7 @@ if($isEvent && !$isSinglePost && !$postHasFeaturedImage) {
 <?php       $venueField = 'after_venue';                include( locate_template( 'content-venue.php', false, false ) ); ?>
             </div>
                         <div class="col-md-4">
-<?php       $organizerField = 'after_organizer';                include( locate_template( 'content-organizer.php', false, false ) ); ?>
+<?php       $organizerField = 'after_organizers';                include( locate_template( 'content-organizer.php', false, false ) ); ?>
             </div>
             </div>            </div>
 <?php } ?>
