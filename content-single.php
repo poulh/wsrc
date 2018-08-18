@@ -35,7 +35,8 @@ $longDate = get_the_date('F') . " " . $abbreviation . ", " . get_the_date("Y");
 
 $postBios = [];
 $displayBioContent = false;
-if( $postSlug == "event" ) {
+$isEvent = $postSlug == "event";
+if( $isEvent ) {
     $postBios = get_field('bios');
     if( gettype( $postBios) == "string" ) { //this is dumb. if there isn't a value it doesn't return null but an empty string
         $postBios = [];
@@ -46,15 +47,16 @@ if( $postSlug == "event" ) {
     $postBios = [ get_the_ID() ];
 }
 $numBios = sizeof( $postBios );
-
+$isSinglePost = is_single(); // single post means its the actual posts page as opposed to a search or 'category/archive' page
 
 ?>
-<?php if(!is_single() ) { ?>
+<?php if(!$isSinglePost ) { ?>
                 <a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>" >
 <?php } ?>
 
 <?php
-                 if (has_post_thumbnail()) {
+$postHasFeaturedImage = has_post_thumbnail();
+                 if ($postHasFeaturedImage) {
     ?>
 
 
@@ -73,11 +75,11 @@ $numBios = sizeof( $postBios );
             <?php
 
     $upcomingEvent = $now->format("Y-m-d") <= get_the_time("Y-m-d");
-    if ($postSlug == "event") {
+    if ($isEvent) {
         $dateText = "Past Event";
         $backgroundColor = $upcomingEvent ? "background-color-primary" : "background-color-alt";
         // if now is before the event's date ( including day of )
-        if ($upcomingEvent || !is_single()) {
+        if ($upcomingEvent || !$isSinglePost) {
             $dateText = $shortDate;
 
         } ?>
@@ -100,22 +102,24 @@ $numBios = sizeof( $postBios );
     } ?>
 
         </div>
-
-
         <?php
-} ?>
+                 } ?>
 
 
                     <h2 itemprop="headline" class="entry-title single-title">
 <?php
-                                                 if( !is_single() && !is_archive()) { echo $postName . ": "; }
+
+                                                 if( !$isSinglePost && !is_archive()) { echo $postName . ": "; } // !is_archive() tells us we are on a search. on searches we display the 'post type' ( event, bio, etc )
 the_title();
+
 ?>
 </h2>
 
 
 
-<?php if(!is_single() ) { ?>
+<?php
+    // this </a> is the end of the hyperlink. we make the whole image/title a link to the event/bio on category/search pages
+    if(!$isSinglePost ) { ?>
 
                 </a>
 <?php } ?>
@@ -150,7 +154,16 @@ the_title();
     <!-- .entry-header -->
 
     <div itemprop="text" class="entry-content">
-<?php is_single() ? the_content() : the_excerpt();?>
+<?php
+//if we are on a search/category/archive page for an event and the event doesn't have an image
+//we display the date ( which is normally a ribbon on the image )
+//after the title. on sigle pages the event is in the event box so no need to display it twice
+if($isEvent && !$isSinglePost && !$postHasFeaturedImage) {
+    echo  $longDate;
+}
+
+
+                              $isSinglePost ? the_content() : the_excerpt();?>
 
                               <?php if( $parentSlug == "bio" ) { ?>
 
@@ -160,7 +173,7 @@ the_title();
 
 
         <?php
-                              if( is_single() && $postSlug == "event" ) {
+                              if( $isSinglePost && $isEvent ) {
         $purchaseUrl = get_field("purchase_url");
         $memberCost = get_field("member_price");
         $guestCost = get_field("guest_price");
@@ -345,7 +358,7 @@ if ($venues) {
 
 <?php } ?>
 
-<?php if(is_single()) { ?>
+<?php if($isSinglePost) { ?>
         <!-- Bio Section -->
 
 <?php if( $displayBioContent && ($numBios > 0 ) ) { ?>

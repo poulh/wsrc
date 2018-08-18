@@ -61,6 +61,11 @@ if ( $the_query->have_posts() ) {
 										$i_latest_posts = 0;
 									while ( $the_query->have_posts() ) :
 										$the_query->the_post();
+                                    if(!has_post_thumbnail()) {
+                                        //if there is no thumbnail we skip the event. this is our way of scheduling events
+                                        //and getting them in the calendar, but not showing them
+                                        continue;
+                                    }
 										//$id = get_the_id();
 										//$meta = get_post_meta($id);
 										$upcoming_event = get_post_time('U',true) >= current_time('U',1);
