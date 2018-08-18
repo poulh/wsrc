@@ -251,7 +251,8 @@ if ($venues) {
         $state = get_field('state', $venueID);
         $zip_code = get_field('zip_code', $venueID);
         $combined_address = $address . ' ' . $city . ' ' . $state . ' ' . $zip_code;
-        $google_url = "https://www.google.com/maps/place/" . $combined_address; ?>
+        $google_maps_url = "https://www.google.com/maps/place/" . $combined_address;
+        $apple_maps_url = "https://maps.apple.com/?q=" . $combined_address; ?>
                         <dd>
                             <?php echo get_the_title($venueID) ?>
                         </dd>
@@ -269,7 +270,8 @@ if ($venues) {
                             <br>
                             <?php if ($address && $city && $state && $zip_code) {
             ?>
-                            <a target="0" href=" <?php echo $google_url ?> ">+ Google Maps</a>
+                                Maps: <a target="0" href=" <?php echo $google_maps_url ?> "><i class="fa fa-google"></i></a> <a  href=" <?php echo $apple_maps_url ?> "><i class="fa fa-apple"></i></a>
+
                             <?php
         } ?>
 
@@ -414,7 +416,7 @@ if ($venues) {
                                    array_push($bioWords,"[&hellip;]");
                                }
 
-                               echo implode(" ", $bioWords); ?>
+                               echo implode(" ", $bioWords); ?>                          <a href="<?php echo get_post_permalink($bioID); ?>">    <i class="fa fa-info-circle"></i></a>
 
                     </div>
                                                       <?php } ?>
@@ -439,7 +441,7 @@ if ($venues) {
                             book
                             <?php
                             } ?>
-                            from Amazon, and browse all of our books in the club's <a href="/book-store">Book Store
+                            from Amazon, or browse all of our books in the club's <a href="/book-store">Book Store
 
  <i class="fa fa-book"></i></a>  </strong>
 
