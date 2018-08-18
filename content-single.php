@@ -300,26 +300,13 @@ if ($venues) {
                         ?>
                         <dd>
                             <?php
-                        echo get_the_title($organizerID); ?>
-                        <a href="<?php echo get_post_permalink($organizerID); ?>">
-                        <i class="fa fa-info-circle"></i>
-                        </a>
-<?php
-                        $organizerEmail = get_field("email", $organizerID);
-                        if ($organizerEmail) {
-                            //todo: there is a bug here. if 'get_the_title()' includs an ampersand (&) the mailto will cut off the rest of the string.
-                            //however, str_replace does not work as it seems wordpress stores the & as &amp;.  searching/replacing that string also doesn't work. its very frustrating.
-                            //spent an hour on it and am giving up. PH
+                        $contactName = get_the_title($organizerID);
+                        echo $contactName; ?>
+                        <br>
 
-                            $emailUrl = 'mailto:' . $organizerEmail . '?subject=' . get_the_title(); ?>
-                            <a href="<?php echo $emailUrl; ?>">
-                                <i class="fa fa-envelope"></i>
-                            </a>
-
-                            <?php
-                        } ?>
-                        </dd>
-
+<?php $contactID = $organizerID; $contactSubject = get_the_title();
+                        include( locate_template( 'content-contact-info.php', false, false ) ); ?>
+</dd>
 
 
 

@@ -1,4 +1,4 @@
-<?php //$bioName, $amazonAffiliateTag must be set before this template is loaded
+<?php //$bioID, $bioName, $amazonAffiliateTag must be set before this template is loaded
 $socialFields = array("amazon_authors_page", "twitter", "facebook", "website","email");
 $socialUrls = array("%s%s", "https://www.twitter.com/%s", "https://www.facebook.com/%s", "%s","mailto:%s");
 $socialTooltips = array("%s Amazon Homepage: Proceeds benefit club!", "%s on Twitter", "%s on Facebook", "%s's Website", "Email %s");
