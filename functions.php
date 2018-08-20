@@ -514,7 +514,7 @@ function parallax_one_php_style() {
 		}
 	}
 
-	$parallax_one_bigtitle_background = get_theme_mod( 'parallax_one_bigtitle_background', 'rgba(0, 0, 0, 0.7)' );
+	$parallax_one_bigtitle_background = get_theme_mod( 'parallax_one_bigtitle_background' );
 	if ( ! empty( $parallax_one_bigtitle_background ) ) {
 		echo '.overlay-layer-wrap{ background:' . $parallax_one_bigtitle_background . ';}';
 	}

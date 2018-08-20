@@ -2391,7 +2391,7 @@ button.control_next.fade-btn {
 .call-to-action .section-overlay-layer {
 	padding-top: 100px;
 	padding-bottom: 100px;
-	background: rgba(0, 5, 8, 0.80);
+	background: rgba(0, 0, 0, 0.3);
 }
 
 .call-to-action h2 {
@@ -4504,7 +4504,7 @@ footer.footer .team-member-box .team-member {
 
 /* THE OVERLAY COLORS WHICH WILL SHOW IN FRONT OF BACKGROUND IMAGES*/
 .overlay-layer-wrap {
-	background: rgba(0, 5, 8, 0.6);
+	background: rgba(0, 0, 0, 0.3);
 }
 
 .overlay-layer-2 {
