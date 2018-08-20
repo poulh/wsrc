@@ -24,7 +24,8 @@ function parallax_one_customize_register( $wp_customize ) {
 		 * Render the content
 		 */
 		public function render_content() {
-			echo __( '<span class="customize-control-title">Choose the character sets you want</span>', 'parallax-one' );
+            // We removed these options below so this method now just sort of no-ops. removing this <span> though causes a text box to show up
+			echo __( '<span class="customize-control-title"></span>', 'parallax-one' );
 		}
 	}
 
@@ -984,40 +985,16 @@ function parallax_one_customize_register( $wp_customize ) {
 			'sanitize_callback' => 'parallax_one_sanitize_checkbox',
 		)
 	);
-	$wp_customize->add_control(
-		'parallax_one_character_cyrillic', array(
-			'type'     => 'checkbox',
-			'label'    => esc_html__( 'Cyrillic', 'parallax-one' ),
-			'section'  => 'parallax_one_general_section',
-			'priority' => 10,
-		)
-	);
 
 	$wp_customize->add_setting(
 		'parallax_one_character_vietnamese', array(
 			'sanitize_callback' => 'parallax_one_sanitize_checkbox',
 		)
 	);
-	$wp_customize->add_control(
-		'parallax_one_character_vietnamese', array(
-			'type'     => 'checkbox',
-			'label'    => esc_html__( 'Vietnamese', 'parallax-one' ),
-			'section'  => 'parallax_one_general_section',
-			'priority' => 11,
-		)
-	);
 
 	$wp_customize->add_setting(
 		'parallax_one_character_greek', array(
 			'sanitize_callback' => 'parallax_one_sanitize_checkbox',
-		)
-	);
-	$wp_customize->add_control(
-		'parallax_one_character_greek', array(
-			'type'     => 'checkbox',
-			'label'    => esc_html__( 'Greek', 'parallax-one' ),
-			'section'  => 'parallax_one_general_section',
-			'priority' => 12,
 		)
 	);
 }
