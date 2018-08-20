@@ -2421,11 +2421,13 @@ button.control_next.fade-btn {
 .contact-info {
 	background-color: #fff;
 	text-align: center;
+
 }
 
 .contact-info .section-overlay-layer {
-	padding-top: 30px;
-	padding-bottom: 70px;
+	padding-top: 0px;
+	padding-bottom: 30px;
+	background-color: rgb(247,248,250);
 }
 
 .contact-info .logo-container {
