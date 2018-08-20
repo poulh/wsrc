@@ -108,7 +108,7 @@ parallax_hook_body_top();
 
 						if ( ! empty( $parallax_one ) ) :
 
-							echo '<a href="' . esc_url( home_url( '/' ) ) . '" class="navbar-brand" title="' . get_bloginfo( 'title' ) . '">';
+							echo '<a href="' . esc_url( home_url( '/' ) ) . '" class="navbar-brand" title="Homepage: ' . get_bloginfo( 'title' ) . '">';
 
 							echo '<img src="' . parallax_one_make_protocol_relative_url( esc_url( $parallax_one ) ) . '" alt="' . get_bloginfo( 'title' ) . '">';
 
