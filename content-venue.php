@@ -20,16 +20,13 @@ if ($venues) {
 <?php echo get_the_title($venueID) ?>
         </dd>
 <dd>
-<?php echo $address . "<br>"; ?>
-<?php if ($address2) {
-    echo $address2 . "<br>";
-} ?>
 
+<?php echo $address . "<br>"; ?>
+<?php if ($address2) { echo $address2 . "<br>"; } ?><!-- address2 should be used for apartment numbers and 'beetween streetX and streetY'. It is not included in google/apple map url -->
 <?php echo $city; ?>
-<?php if ($state) {
-    echo ", " . $state;
-} ?>
-<?php echo $zip_code; ?>
+<?php if ($state) { echo ", " . $state; } ?>
+<?php echo " " . $zip_code; ?>
+
 <br>
 <?php if ($address && $city && $state && $zip_code) {
     ?>
