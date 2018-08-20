@@ -764,28 +764,28 @@ function parallax_one_customize_register( $wp_customize ) {
 	);
 
 	/**
-	 * LATEST NEWS OPTIONS
+	 * UPCOMING EVENTS OPTIONS
 	 */
 
 	$wp_customize->add_section(
-		'parallax_one_latest_news_section', array(
-			'title'           => esc_html__( 'Latest news section', 'parallax-one' ),
+		'parallax_one_upcoming_events_section', array(
+			'title'           => esc_html__( 'Upcoming Events Section', 'parallax-one' ),
 			'priority'        => 65,
 			'active_callback' => 'parallax_one_show_on_front',
 		)
 	);
 
 	$wp_customize->add_setting(
-		'parallax_one_latest_news_title', array(
-			'default'           => esc_html__( 'Latest news', 'parallax-one' ),
+		'parallax_one_upcoming_events_title', array(
+			'default'           => esc_html__( 'Upcoming Events', 'parallax-one' ),
 			'sanitize_callback' => 'parallax_one_sanitize_input',
 			'transport'         => 'postMessage',
 		)
 	);
 	$wp_customize->add_control(
-		'parallax_one_latest_news_title', array(
-			'label'    => esc_html__( 'Main title', 'parallax-one' ),
-			'section'  => 'parallax_one_latest_news_section',
+		'parallax_one_upcoming_events_title', array(
+			'label'    => esc_html__( 'Main Title', 'parallax-one' ),
+			'section'  => 'parallax_one_upcoming_events_section',
 			'priority' => 10,
 		)
 	);

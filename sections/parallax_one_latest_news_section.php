@@ -26,8 +26,8 @@ endif;
 
 $the_query = new WP_Query( $args );
 if ( $the_query->have_posts() ) {
-	$parallax_one_latest_news_title = get_theme_mod( 'parallax_one_latest_news_title', esc_html__( 'Latest news', 'parallax-one' ) );
-	$parallax_one_latest_news_title = apply_filters( 'parallax_one_translate_single_string', $parallax_one_latest_news_title, 'Latest News Section' );
+	$parallax_one_upcoming_events_title = get_theme_mod( 'parallax_one_upcoming_events_title', esc_html__( 'Upcoming Events', 'parallax-one' ) );
+	$parallax_one_upcoming_events_title = apply_filters( 'parallax_one_translate_single_string', $parallax_one_upcoming_events_title, 'Upcoming Events Section' );
 
 	if ( $parallax_number_of_posts > 0 ) {
 		?>
@@ -40,8 +40,8 @@ if ( $the_query->have_posts() ) {
 
 						<!-- TIMELINE HEADING / TEXT  -->
 						<?php
-						if ( ! empty( $parallax_one_latest_news_title ) ) {
-							echo '<div class="col-md-12 timeline-text text-left"><h2 class="text-left dark-text">' . esc_attr( $parallax_one_latest_news_title ) . '</h2><div class="colored-line-left"></div></div>';
+						if ( ! empty( $parallax_one_upcoming_events_title ) ) {
+							echo '<div class="col-md-12 timeline-text text-left"><h2 class="text-left dark-text">' . esc_attr( $parallax_one_upcoming_events_title ) . '</h2><div class="colored-line-left"></div></div>';
 						} elseif ( is_customize_preview() ) {
 							echo '<div class="col-md-12 timeline-text text-left paralax_one_only_customizer"><h2 class="text-left dark-text "></h2><div class="colored-line-left "></div></div>';
 						}
