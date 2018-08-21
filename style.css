@@ -156,7 +156,7 @@ a:hover {
 }
 
 a:focus {
-	outline: 1px dotted rgb(174,9,35);
+	outline: 1px dotted rgb(222,1,0);
 	text-decoration: none;
 }
 
@@ -200,13 +200,13 @@ a:focus {
 }
 
 .navbar-inverse .navbar-nav > li > a:focus {
-	outline: 1px solid rgb(174,9,35);
+	outline: 1px solid rgb(222,1,0);
 	outline-style: dotted;
-	color: rgb(174,9,35);
+	color: rgb(222,1,0);
 }
 
 .navbar-inverse .navbar-nav > li.not-active {
-	color: rgb(174,9,35);
+	color: rgb(222,1,0);
 }
 
 .mailchimp-success,
@@ -386,7 +386,7 @@ body.custom-background {
 .skip-link {
 	z-index: 1031!important;
 	top: 40px!important;
-	color: rgb(174,9,35)!important;
+	color: rgb(222,1,0)!important;
 	text-decoration: none!important;
 }
 
@@ -762,7 +762,7 @@ input[type="submit"] {
 	border: none;
 	border-radius: 3px;
 	color: #fff;
-	background-color: rgb(174,9,35);
+	background-color: rgb(222,1,0);
 	background-image: url(images/tr-btn.png);
 	background-repeat: repeat-x;
 	background-size: contain;
@@ -781,7 +781,7 @@ input[type="button"]:hover,
 input[type="reset"]:hover,
 input[type="submit"]:hover {
 	border-color: inherit;
-	background: rgb(174,9,35);
+	background: rgb(222,1,0);
 }
 
 button:focus,
@@ -1058,7 +1058,7 @@ header .navbar-brand {
 
 .main-navigation a:hover,
 .main-navigation a:focus {
-	color: rgb(174,9,35);
+	color: rgb(222,1,0);
 }
 
 .main-navigation ul ul {
@@ -1121,7 +1121,7 @@ header .navbar-brand {
 }
 
 .menu-item > a:focus {
-	outline: 1px dotted rgb(174,9,35);
+	outline: 1px dotted rgb(222,1,0);
 }
 
 .site-header-menu.toggled-on,
@@ -1162,7 +1162,7 @@ header .navbar-brand {
 .dropdown-toggle:focus {
 	z-index: 1;
 	color: #fff;
-	background-color: rgb(174,9,35);
+	background-color: rgb(222,1,0);
 }
 
 .dropdown-toggle.toggled-on,
@@ -1170,7 +1170,7 @@ header .navbar-brand {
 .dropdown-toggle.toggled-on:focus {
 	z-index: 1;
 	color: #fff;
-	background-color: rgb(174,9,35);
+	background-color: rgb(222,1,0);
 }
 
 .dropdown-toggle.toggled-on:after {
@@ -1242,7 +1242,7 @@ header .navbar-brand {
 	width: 30px;
 	height: 4px;
 	border-radius: 2px;
-	background-color: rgb(174,9,35);
+	background-color: rgb(222,1,0);
 }
 
 .navbar-toggle .icon-bar {
@@ -1626,7 +1626,7 @@ header .navbar-brand {
 	position: absolute;
 	top: 8px;
 	left: 0;
-	color: rgb(174,9,35);
+	color: rgb(222,1,0);
 	font-size: 36px;
 	content: "\2022";
 }
@@ -1994,7 +1994,7 @@ header .navbar-brand {
 }
 
 .timeline-box-wrap .info:hover {
-	border-bottom-color: rgb(174,9,35);
+	border-bottom-color: rgb(222,1,0);
 }
 
 .timeline-box-wrap .info h3 {
@@ -2014,7 +2014,7 @@ header .navbar-brand {
 }
 
 .timeline-box-wrap .info h3 a:hover {
-	color: rgb(174,9,35);
+	color: rgb(222,1,0);
 	text-decoration: none;
 }
 
@@ -2023,7 +2023,7 @@ header .navbar-brand {
 	width: 80px;
 	height: 2px;
 	margin-top: 5px;
-	background: rgb(174,9,35);
+	background: rgb(222,1,0);
 	content: "";
 }
 
@@ -2102,7 +2102,7 @@ button.control_next {
 	height: auto;
 	padding: 0;
 	opacity: 0.8;
-	color: rgb(174,9,35);
+	color: rgb(222,1,0);
 	background: none;
 	font-size: 70px;
 	font-weight: 600;
@@ -2114,7 +2114,7 @@ button.control_next:active,
 button.control_next:focus,
 button.control_prev:active,
 button.control_prev:focus {
-	outline: 1px dotted rgb(174,9,35);
+	outline: 1px dotted rgb(222,1,0);
 	-webkit-box-shadow: none;
 	box-shadow: none;
 }
@@ -2129,7 +2129,7 @@ button.control_prev {
 	height: auto;
 	padding: 0;
 	opacity: 0.8;
-	color: rgb(174,9,35);
+	color: rgb(222,1,0);
 	background: none;
 	font-size: 70px;
 	font-weight: 600;
@@ -2299,8 +2299,8 @@ button.control_next.fade-btn {
 	border-radius: 50%;
 	background-color: #fafafa;
 	background-clip: padding-box;
-	-webkit-box-shadow: 0 0 0 1px rgb(174,9,35);
-	box-shadow: 0 0 0 1px rgb(174,9,35);
+	-webkit-box-shadow: 0 0 0 1px rgb(222,1,0);
+	box-shadow: 0 0 0 1px rgb(222,1,0);
 }
 
 .feedback .pic-container img {
@@ -2351,7 +2351,7 @@ button.control_next.fade-btn {
 }
 
 .testimonials-box .feedback:hover {
-	border-bottom-color: rgb(174,9,35);
+	border-bottom-color: rgb(222,1,0);
 }
 
 .galcolumn .testimonials-box {
@@ -2621,7 +2621,7 @@ div.wpcf7-mail-sent-ng {
 	padding-bottom: 4px;
 	border: none;
 	color: #fff;
-	background-color: rgb(174,9,35);
+	background-color: rgb(222,1,0);
 	background-image: url(images/tr-btn.png);
 	background-repeat: repeat-x;
 	background-size: contain;
@@ -2638,7 +2638,7 @@ div.wpcf7-mail-sent-ng {
 
 .woocommerce ul.products li.product .button:hover,
 .woocommerce .products .product .button:hover {
-	border-color: rgb(174,9,35);
+	border-color: rgb(222,1,0);
 	opacity: 0.8;
 }
 
@@ -2656,7 +2656,7 @@ div.wpcf7-mail-sent-ng {
 
 .woocommerce ul.products li.product h3:hover,
 .woocommerce .products .product h3:hover {
-	color: rgb(174,9,35);
+	color: rgb(222,1,0);
 	text-decoration: none;
 }
 
@@ -2670,7 +2670,7 @@ div.wpcf7-mail-sent-ng {
 	margin: 0;
 	padding: 0;
 	border-radius: 0;
-	background-color: rgba(174,9,35,0.9);
+	background-color: rgba(222,1,0,0.9);
 	line-height: 50px;
 }
 
@@ -2864,7 +2864,7 @@ div.wpcf7-mail-sent-ng {
 	width: 80px;
 	height: 2px;
 	margin-top: 5px;
-	background: rgb(174,9,35);
+	background: rgb(222,1,0);
 	content: "";
 }
 
@@ -2874,7 +2874,7 @@ div.wpcf7-mail-sent-ng {
 	border: none;
 	border-radius: 3px;
 	color: #fff;
-	background-color: rgb(174,9,35);
+	background-color: rgb(222,1,0);
 	background-image: url(images/tr-btn.png);
 	background-repeat: repeat-x;
 	background-size: contain;
@@ -2892,7 +2892,7 @@ div.wpcf7-mail-sent-ng {
 .woocommerce div.product .single_add_to_cart_button:hover {
 	border: none;
 	color: #fff;
-	background: rgb(174,9,35) !important;
+	background: rgb(222,1,0) !important;
 	text-decoration: none;
 }
 
@@ -2933,7 +2933,7 @@ div.wpcf7-mail-sent-ng {
 
 .woocommerce div.product p.stock {
 	margin: 10px 0 30px;
-	color: rgb(174,9,35);
+	color: rgb(222,1,0);
 	font-size: 14px;
 }
 
@@ -2949,7 +2949,7 @@ div.wpcf7-mail-sent-ng {
 	margin: 0;
 	padding: 0;
 	border-radius: 0;
-	background-color: rgba(174,9,35,0.9);
+	background-color: rgba(222,1,0,0.9);
 	line-height: 70px;
 }
 
@@ -3037,8 +3037,8 @@ div.wpcf7-mail-sent-ng {
 }
 
 .woocommerce div.product .woocommerce-tabs ul.tabs li.active {
-	border-bottom: 1px solid rgba(174,9,35,1);
-	color: rgba(174,9,35,1);
+	border-bottom: 1px solid rgba(222,1,0,1);
+	color: rgba(222,1,0,1);
 	background: none;
 }
 
@@ -3085,10 +3085,10 @@ div.wpcf7-mail-sent-ng {
 .woocommerce #review_form #respond .form-submit input {
 	min-width: 10px;
 	padding: 7px 30px;
-	border: 1px solid rgb(174,9,35);
+	border: 1px solid rgb(222,1,0);
 	border-radius: 3px;
 	color: #fff;
-	background: rgb(174,9,35);
+	background: rgb(222,1,0);
 	-webkit-box-shadow: none;
 	box-shadow: none;
 	text-shadow: none;
@@ -3100,7 +3100,7 @@ div.wpcf7-mail-sent-ng {
 
 .woocommerce #review_form #respond .form-submit input:hover {
 	border: 1px solid #eaebec;
-	color: rgb(174,9,35);
+	color: rgb(222,1,0);
 	background: #f7f8fa;
 }
 
@@ -3184,7 +3184,7 @@ div.wpcf7-mail-sent-ng {
 }
 
 .woocommerce .woocommerce-breadcrumb a:hover {
-	color: rgb(174,9,35);
+	color: rgb(222,1,0);
 }
 
 .woocommerce div.product .woocommerce-tabs h2:after {
@@ -3217,10 +3217,10 @@ div.wpcf7-mail-sent-ng {
 
 .woocommerce .woocommerce-message {
 	border: none;
-	border-bottom: 3px solid rgb(174,9,35);
+	border-bottom: 3px solid rgb(222,1,0);
 	border-radius: 3px;
 	color: #eef9ff;
-	background-color: rgb(174,9,35);
+	background-color: rgb(222,1,0);
 	line-height: 18px;
 }
 
@@ -3249,14 +3249,14 @@ div.wpcf7-mail-sent-ng {
 	margin-bottom: -5px;
 	padding: 7px;
 	color: #fff;
-	background-color: rgb(174,9,35);
+	background-color: rgb(222,1,0);
 	font-size: 13px;
 	font-weight: normal;
 	line-height: 16px;
 }
 
 .woocommerce .woocommerce-message .button:hover {
-	color: rgb(174,9,35);
+	color: rgb(222,1,0);
 	background: rgba(255,255,255,0.9);
 }
 
@@ -3277,10 +3277,10 @@ div.wpcf7-mail-sent-ng {
 .woocommerce .cart input.button {
 	float: none;
 	padding: 0 20px;
-	border: 1px solid rgb(174,9,35);
+	border: 1px solid rgb(222,1,0);
 	border-radius: 3px;
 	color: #fff;
-	background: rgb(174,9,35);
+	background: rgb(222,1,0);
 	-webkit-box-shadow: none;
 	box-shadow: none;
 	text-shadow: none;
@@ -3293,7 +3293,7 @@ div.wpcf7-mail-sent-ng {
 .woocommerce .cart .button:hover,
 .woocommerce .cart input.button:hover {
 	border: 1px solid #eaebec;
-	color: rgb(174,9,35);
+	color: rgb(222,1,0);
 	background: #f7f8fa;
 }
 
@@ -3374,10 +3374,10 @@ div.wpcf7-mail-sent-ng {
 	float: none;
 	float: right;
 	padding: 0 20px;
-	border: 1px solid rgb(174,9,35);
+	border: 1px solid rgb(222,1,0);
 	border-radius: 3px;
 	color: #fff;
-	background: rgb(174,9,35);
+	background: rgb(222,1,0);
 	-webkit-box-shadow: none;
 	box-shadow: none;
 	text-shadow: none;
@@ -3389,7 +3389,7 @@ div.wpcf7-mail-sent-ng {
 
 .woocommerce-cart .wc-proceed-to-checkout a.checkout-button:hover {
 	border: 1px solid #eaebec;
-	color: rgb(174,9,35);
+	color: rgb(222,1,0);
 	background: #f7f8fa;
 }
 
@@ -3419,7 +3419,7 @@ div.wpcf7-mail-sent-ng {
 
 .woocommerce .woocommerce-info {
 	border: none;
-	border-bottom: 3px solid rgb(174,9,35);
+	border-bottom: 3px solid rgb(222,1,0);
 	border-radius: 3px;
 }
 
@@ -3500,10 +3500,10 @@ div.wpcf7-mail-sent-ng {
 	float: none;
 	float: right;
 	padding: 0 20px;
-	border: 1px solid rgb(174,9,35);
+	border: 1px solid rgb(222,1,0);
 	border-radius: 3px;
 	color: #fff;
-	background: rgb(174,9,35);
+	background: rgb(222,1,0);
 	-webkit-box-shadow: none;
 	box-shadow: none;
 	text-shadow: none;
@@ -3516,7 +3516,7 @@ div.wpcf7-mail-sent-ng {
 .woocommerce #payment #place_order:hover,
 .woocommerce-page #payment #place_order:hover {
 	border: 1px solid #eaebec;
-	color: rgb(174,9,35);
+	color: rgb(222,1,0);
 	background: #f7f8fa;
 }
 
@@ -3526,10 +3526,10 @@ div.wpcf7-mail-sent-ng {
 .woocommerce input.button {
 	float: none;
 	padding: 0 20px;
-	border: 1px solid rgb(174,9,35);
+	border: 1px solid rgb(222,1,0);
 	border-radius: 3px;
 	color: #fff;
-	background: rgb(174,9,35);
+	background: rgb(222,1,0);
 	-webkit-box-shadow: none;
 	box-shadow: none;
 	text-shadow: none;
@@ -3544,7 +3544,7 @@ div.wpcf7-mail-sent-ng {
 .woocommerce button.button:hover,
 .woocommerce input.button:hover {
 	border: 1px solid #eaebec;
-	color: rgb(174,9,35);
+	color: rgb(222,1,0);
 	background: #f7f8fa;
 }
 
@@ -3595,13 +3595,13 @@ div.wpcf7-mail-sent-ng {
 	padding: 0 5px;
 	border-radius: 3px;
 	color: #fff;
-	background-color: rgba(174,9,35,0.7);
+	background-color: rgba(222,1,0,0.7);
 	font-size: 12px;
 }
 
 .woocommerce-account .addresses .title .edit:hover,
 .woocommerce-account ul.digital-downloads li .count:hover {
-	background-color: rgba(174,9,35,1);
+	background-color: rgba(222,1,0,1);
 	text-decoration: none;
 }
 
@@ -3674,7 +3674,7 @@ div.wpcf7-mail-sent-ng {
 .woocommerce-page ul.products li.product:hover,
 .woocommerce .products .product:hover,
 .woocommerce-page .products .product:hover {
-	border-bottom-color: rgb(174,9,35);
+	border-bottom-color: rgb(222,1,0);
 }
 
 .woocommerce-page #primary {
@@ -3944,7 +3944,7 @@ div.bbp-template-notice.info {
 }
 
 div.bbp-template-notice a {
-	color: rgb(174,9,35);
+	color: rgb(222,1,0);
 	text-decoration: none;
 }
 
@@ -4048,7 +4048,7 @@ div.bbp-template-notice a {
 	width: 80px;
 	height: 2px;
 	margin-top: 5px;
-	background: rgb(174,9,35);
+	background: rgb(222,1,0);
 	content: "";
 }
 
@@ -4185,7 +4185,7 @@ li.bbp-body div.hentry {
 }
 
 #bbpress-forums .bbp-admin-links a:hover {
-	color: rgb(174,9,35);
+	color: rgb(222,1,0);
 }
 
 .bbp-forum-header a.bbp-forum-permalink,
@@ -4206,7 +4206,7 @@ li.bbp-body div.hentry {
 #bbpress-forums #bbp-single-user-details #bbp-user-navigation li.current a {
 	opacity: 0.8;
 	color: #fff;
-	background: rgb(174,9,35);
+	background: rgb(222,1,0);
 }
 
 #bbpress-forums #bbp-your-profile fieldset fieldset.password span.description {
@@ -4237,7 +4237,7 @@ li.bbp-body div.hentry {
 }
 
 .footer-links li a:hover {
-	color: rgb(174,9,35);
+	color: rgb(222,1,0);
 	text-decoration: none;
 }
 
@@ -4358,7 +4358,7 @@ footer.footer #wp-calendar caption {
 footer.footer #wp-calendar th,
 footer.footer #wp-calendar td {
 	padding: 0;
-	background-color: rgba(174,9,35,0.1);
+	background-color: rgba(222,1,0,0.1);
 	text-align: center;
 }
 
@@ -4370,7 +4370,7 @@ footer.footer #wp-calendar a {
 
 footer.footer #wp-calendar a:hover {
 	color: #fff;
-	background: rgb(174,9,35);
+	background: rgb(222,1,0);
 	background-color: rgba(0, 0, 0, 0.15);
 	text-decoration: none;
 }
@@ -4456,7 +4456,7 @@ footer.footer #wp-calendar td {
 }
 
 .widget_search .search-form:hover:before {
-	color: rgb(174,9,35);
+	color: rgb(222,1,0);
 }
 
 /* parallax custom widgets footer */
@@ -4516,29 +4516,29 @@ footer.footer .team-member-box .team-member {
 /* NAVBAR AND LINK COLORS */
 .navbar-inverse .navbar-toggle:hover,
 .navbar-inverse .navbar-toggle:focus {
-	color: rgb(174,9,35);
+	color: rgb(222,1,0);
 }
 
 a {
-	color: rgb(12,0,175);
+	color: rgb(20,4,189);
 }
 
 a:hover {
-	color: rgb(174,9,35);
+	color: rgb(222,1,0);
 }
 
 .border-bottom-hover:hover {
-	border-bottom-color: rgb(174,9,35);
+	border-bottom-color: rgb(222,1,0);
 }
 
 .sticky-navigation .main-navigation li a:hover,
 .sticky-navigation .login-register li.login a:hover {
-	color: rgb(174,9,35);
+	color: rgb(222,1,0);
 	text-decoration: none;
 }
 
 .sticky-navigation .main-navigation li.current > a {
-	color: rgb(174,9,35);
+	color: rgb(222,1,0);
 }
 
 /* INPUT FIXES */
@@ -4546,13 +4546,13 @@ a:hover {
 .textarea-box:active,
 .input-box:focus,
 .textarea-box:focus {
-	border-color: rgb(174,9,35);
+	border-color: rgb(222,1,0);
 }
 
 /* BUTTONS*/
 .standard-button,
 .navbar-register-button {
-	background-color: rgb(174,9,35);
+	background-color: rgb(222,1,0);
 	background-image: url(images/tr-btn.png);
 	background-repeat: repeat-x;
 	background-size: contain;
@@ -4563,7 +4563,7 @@ a:hover {
 .standard-button:hover,
 .navbar-register-button:hover {
 	color: #fff;
-	background: rgb(174,9,35);
+	background: rgb(222,1,0);
 	text-decoration: none;
 }
 
@@ -4575,40 +4575,40 @@ a:hover {
 .standard-button:active,
 .navbar-register-button:active {
 	border-color: inherit !important;
-	background: rgb(174,9,35) !important;
+	background: rgb(222,1,0) !important;
 	-webkit-box-shadow: none;
 	box-shadow: none;
 }
 
 /* COLORED BACKGROUND AND TEXT*/
 .color-bg {
-	background: rgb(174,9,35);
+	background: rgb(222,1,0);
 }
 
 .colored-text {
-	color: rgb(12,0,175);
+	color: rgb(20,4,189);
 }
 
 /* COLORED BORDERS AND LINES */
 .colored-line-left,
 .colored-line-right,
 .colored-line {
-	background: rgb(174,9,35);
+	background: rgb(222,1,0);
 }
 
 .border-right-colored {
-	border-right: 1px solid rgba(174,9,35,0.3);
+	border-right: 1px solid rgba(222,1,0,0.3);
 }
 
 .border-left-colored {
-	border-left: 1px solid rgba(174,9,35,0.3);
+	border-left: 1px solid rgba(222,1,0,0.3);
 }
 
 .long-transparent-line {
 	width: 200px;
 	height: 1px;
 	margin: auto;
-	background: rgba(174,9,35,0.3);
+	background: rgba(222,1,0,0.3);
 }
 
 
@@ -4680,13 +4680,13 @@ a:hover {
 }
 
 .post-list h2.entry-title a:hover {
-	color: rgb(174,9,35);
+	color: rgb(222,1,0);
 	text-decoration: none;
 }
 
 .page-title {
 	margin-top: 0;
-	color: rgb(174,9,35);
+	color: rgb(222,1,0);
 	font-size: 24px;
 	line-height: 28px;
 	text-transform: uppercase;
@@ -4699,7 +4699,7 @@ a:hover {
 	min-width: 90px;
 	min-height: 90px;
 	padding: 16px 20px;
-	background: rgba(174,9,35,0.9);
+	background: rgba(222,1,0,0.9);
 	text-align: center;
 }
 
@@ -4725,8 +4725,8 @@ a:hover {
 }
 
 .post-list article.sticky {
-	border: 1px solid rgb(174,9,35);
-	border-bottom: 4px solid rgb(174,9,35);
+	border: 1px solid rgb(222,1,0);
+	border-bottom: 4px solid rgb(222,1,0);
 }
 
 .posts-navigation {
@@ -5004,7 +5004,7 @@ h2.screen-reader-text {
 }
 
 .comment-list .comment-metadata {
-	color: rgb(174,9,35);
+	color: rgb(222,1,0);
 	font-size: 12px;
 	font-style: italic;
 	line-height: 16px;
@@ -5089,7 +5089,7 @@ h2.screen-reader-text {
 	padding: 7px 30px;
 	border-radius: 3px;
 	color: #fff;
-	background: rgb(174,9,35);
+	background: rgb(222,1,0);
 	-webkit-box-shadow: none;
 	box-shadow: none;
 	text-shadow: none;
@@ -5110,7 +5110,7 @@ h2.screen-reader-text {
 .comment-form .form-submit input:hover,
 #recaptcha-submit-btn-area input:hover {
 	border: 1px solid #eaebec;
-	color: rgb(174,9,35);
+	color: rgb(222,1,0);
 	background: #f7f8fa;
 }
 
@@ -5138,7 +5138,7 @@ h2.screen-reader-text {
 .mejs-embed,
 .mejs-embed body,
 .mejs-container .mejs-controls {
-	background: rgb(174,9,35)!important;
+	background: rgb(222,1,0)!important;
 }
 
 .mejs-controls .mejs-button button:focus {
@@ -5146,7 +5146,7 @@ h2.screen-reader-text {
 }
 
 .mejs-controls .mejs-time-rail .mejs-time-float {
-	background: rgb(174,9,35)!important;
+	background: rgb(222,1,0)!important;
 }
 
 .wp-playlist-caption span {
@@ -5197,11 +5197,11 @@ h2.screen-reader-text {
 }
 
 .background-color-primary {
-    background-color: rgb(174,9,35);
+    background-color: rgb(222,1,0);
 }
 
 .background-color-alt {
-	background-color: rgb(12,0,175);
+	background-color: rgb(20,4,189);
 }
 
 .color-white {
@@ -5346,7 +5346,7 @@ h2.screen-reader-text {
 	float: left;
 	width: 80px;
 	height: 2px;
-	background: rgb(174,9,35);
+	background: rgb(222,1,0);
 }
 
 #sidebar-secondary ul {
@@ -5399,7 +5399,7 @@ h2.screen-reader-text {
 .widget_calendar th,
 .widget_calendar td {
 	padding: 0;
-	background-color: rgba(174,9,35,0.1);
+	background-color: rgba(222,1,0,0.1);
 	text-align: center;
 }
 
@@ -5411,7 +5411,7 @@ h2.screen-reader-text {
 
 .widget_calendar a:hover {
 	color: #fff;
-	background: rgb(174,9,35);
+	background: rgb(222,1,0);
 	background-color: rgba(0, 0, 0, 0.15);
 	text-decoration: none;
 }
@@ -5496,7 +5496,7 @@ h2.screen-reader-text {
 }
 
 .widget_search .search-form:hover:before {
-	color: rgb(174,9,35);
+	color: rgb(222,1,0);
 }
 
 #sidebar-secondary .service-box {
@@ -5977,7 +5977,7 @@ h2.screen-reader-text {
 
 	.main-navigation li:hover > a,
 	.main-navigation li.focus > a {
-		color: rgb(174,9,35);
+		color: rgb(222,1,0);
 	}
 
 	.main-navigation ul ul {
@@ -6279,7 +6279,7 @@ h2.screen-reader-text {
 
 	.sticky-navigation .main-navigation ul .this-open > .dropdownmenu,
 	.this-open > .dropdownmenu {
-		background: rgb(174,9,35);
+		background: rgb(222,1,0);
 	}
 
 	.dropdownmenu:before {
@@ -6294,7 +6294,7 @@ h2.screen-reader-text {
 	}
 
 	.this-open > a {
-		color: rgb(174,9,35) !important;
+		color: rgb(222,1,0) !important;
 	}
 
 	.has_children > ul {
@@ -7685,10 +7685,10 @@ h2.screen-reader-text {
 #jp-carousel-comment-form-button-submit {
 	min-width: 10px !important;
 	padding: 7px 30px !important;
-	border: 1px solid rgb(174,9,35) !important;
+	border: 1px solid rgb(222,1,0) !important;
 	border-radius: 3px !important;
 	color: #fff !important;
-	background: rgb(174,9,35) !important;
+	background: rgb(222,1,0) !important;
 	-webkit-box-shadow: none !important;
 	box-shadow: none !important;
 	text-shadow: none !important;
@@ -7818,7 +7818,7 @@ p.edd-alert-error,
 }
 
 .edd_download_inner:hover {
-	border-bottom-color: rgb(174,9,35);
+	border-bottom-color: rgb(222,1,0);
 }
 
 .edd_download_title a,
