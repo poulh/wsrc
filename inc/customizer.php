@@ -41,28 +41,6 @@ function parallax_one_customize_register( $wp_customize ) {
 	$wp_customize->get_section( 'background_image' )->panel = 'panel_2';
 	$wp_customize->get_section( 'colors' )->panel           = 'panel_2';
 
-	require_once( 'class/parallax-one-info.php' );
-	$wp_customize->add_section(
-		'parallax_one_theme_info', array(
-			'title'    => __( 'Theme info', 'parallax-one' ),
-			'priority' => 0,
-		)
-	);
-	$wp_customize->add_setting(
-		'parallax_one_theme_info', array(
-			'capability'        => 'edit_theme_options',
-			'sanitize_callback' => 'parallax_one_sanitize_input',
-		)
-	);
-	$wp_customize->add_control(
-		new Parallax_One_Info(
-			$wp_customize, 'parallax_one_theme_info', array(
-				'section'  => 'parallax_one_theme_info',
-				'priority' => 10,
-			)
-		)
-	);
-
 	/**
 	 * APPEARANCE
 	 */
@@ -564,7 +542,7 @@ function parallax_one_customize_register( $wp_customize ) {
 	/* RIBBON SETTINGS */
 	$wp_customize->add_section(
 		'parallax_one_ribbon_section', array(
-			'title'           => esc_html__( 'Ribbon section', 'parallax-one' ),
+			'title'           => esc_html__( 'Ribbon Section', 'parallax-one' ),
 			'priority'        => 60,
 			'active_callback' => 'parallax_one_show_on_front',
 		)
@@ -811,7 +789,7 @@ function parallax_one_customize_register( $wp_customize ) {
 
 	$wp_customize->add_section(
 		'parallax_one_general_section', array(
-			'title'       => esc_html__( 'Advanced options', 'parallax-one' ),
+			'title'       => esc_html__( 'Advanced Options', 'parallax-one' ),
 			'priority'    => 70,
 			'description' => esc_html__( 'Parallax One theme general options', 'parallax-one' ),
 		)
