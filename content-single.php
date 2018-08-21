@@ -298,9 +298,16 @@ if($isEvent && !$isSinglePost && !$postHasFeaturedImage) {
             <div class="col-md-4">
             <div class="event_meta_block">
             <div class="event_meta_heading" style="padding-bottom:5px;">
-            <strong>After Event*</strong>
-            <dl><dd><?php echo get_field('after_title'); ?></dd></dl>
-                                       <dl><dd>                                <h6>*Not affiliated with the club.</h6></dd></dl>
+                                  <strong>After Event<?php if(get_field('after_not_affiliated')) { echo "*"; } ?></strong>
+            <dl><dd><?php echo get_field('after_title'); ?></dd></dl> 
+
+<?php if(get_field('after_not_affiliated')) { ?>
+                                       <dl>
+                                       <dd>
+                                       <h6>*Not affiliated with the club.</h6>
+                                       </dd>
+                                       </dl>
+<?php } ?>
             </div>
             </div>            </div>
       <div class="col-md-4">
