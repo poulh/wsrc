@@ -32,7 +32,7 @@ if ( $the_query->have_posts() ) {
 	if ( $parallax_number_of_posts > 0 ) {
 		?>
 		<?php parallax_hook_news_before(); ?>
-		<section class="brief timeline" id="latestnews" role="region" aria-label="<?php esc_html_e( 'Latest blog posts', 'parallax-one' ); ?>">
+		<section class="brief timeline" id="UpcomingEvents" role="region" aria-label="<?php esc_html_e( 'Latest blog posts', 'parallax-one' ); ?>">
 			<?php parallax_hook_news_top(); ?>
 			<div class="section-overlay-layer">
 				<div class="container">
