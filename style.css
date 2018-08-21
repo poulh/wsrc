@@ -970,11 +970,11 @@ header .navbar-brand {
 
 .navbar-brand > img {
 	display: inline-block;
-	max-height: 56px;
+	max-height: 84px;
 }
 
 .sticky-navigation {
-	min-height: 70px;
+	min-height: 98px;
 	margin-bottom: 0 !important;
 	border: none;
 	background: #fff;
