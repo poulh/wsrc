@@ -420,7 +420,7 @@ function parallax_one_customize_register( $wp_customize ) {
 	$wp_customize->add_section(
 		'parallax_one_services_section', array(
 			'title'           => esc_html__( 'HTML Columns w/ Image Section', 'parallax-one' ),
-			'priority'        => 40,
+			'priority'        => 62,
 			'active_callback' => 'parallax_one_show_on_front',
 		)
 	);
@@ -496,7 +496,7 @@ function parallax_one_customize_register( $wp_customize ) {
 	$wp_customize->add_section(
 		'parallax_one_testimonials_section', array(
 			'title'           => esc_html__( 'Icon List Section', 'parallax-one' ),
-			'priority'        => 55,
+			'priority'        => 65,
 			'active_callback' => 'parallax_one_show_on_front',
 		)
 	);
@@ -641,7 +641,7 @@ function parallax_one_customize_register( $wp_customize ) {
 	$wp_customize->add_section(
 		'parallax_one_upcoming_events_section', array(
 			'title'           => esc_html__( 'Upcoming Events Section', 'parallax-one' ),
-			'priority'        => 65,
+			'priority'        => 55,
 			'active_callback' => 'parallax_one_show_on_front',
 		)
 	);
@@ -662,13 +662,13 @@ function parallax_one_customize_register( $wp_customize ) {
 	);
 
 	/**
-	 * CONTACT OPTIONS
+	 * SOCIAL MEDIA OPTIONS
 	 */
-	/* CONTACT SETTINGS */
+	/* SOCIAL MEDIA SETTINGS */
 	$wp_customize->add_section(
 		'parallax_one_contact_section', array(
-			'title'           => esc_html__( 'Contact section', 'parallax-one' ),
-			'priority'        => 70,
+			'title'           => esc_html__( 'Social Media Section', 'parallax-one' ),
+			'priority'        => 40,
 			'active_callback' => 'parallax_one_show_on_front',
 		)
 	);
@@ -683,7 +683,7 @@ function parallax_one_customize_register( $wp_customize ) {
 	$wp_customize->add_control(
 		new Parallax_One_General_Repeater(
 			$wp_customize, 'parallax_one_contact_info_content', array(
-				'label'                  => esc_html__( 'Add new contact field', 'parallax-one' ),
+				'label'                  => esc_html__( 'Add New Social Media Field', 'parallax-one' ),
 				'section'                => 'parallax_one_contact_section',
 				'priority'               => 10,
 				'parallax_image_control' => false,
@@ -699,14 +699,6 @@ function parallax_one_customize_register( $wp_customize ) {
 		'parallax_one_frontpage_map_shortcode', array(
 			'default'           => '',
 			'sanitize_callback' => 'parallax_one_sanitize_input',
-		)
-	);
-	$wp_customize->add_control(
-		'parallax_one_frontpage_map_shortcode', array(
-			'label'       => esc_html__( 'Map shortcode', 'parallax-one' ),
-			'description' => __( 'To use this section please install <a href="https://wordpress.org/plugins/intergeo-maps/">Intergeo Maps</a> plugin then use it to create a map and paste here the shortcode generated', 'parallax-one' ),
-			'section'     => 'parallax_one_contact_section',
-			'priority'    => 20,
 		)
 	);
 
@@ -820,7 +812,7 @@ function parallax_one_customize_register( $wp_customize ) {
 	$wp_customize->add_section(
 		'parallax_one_general_section', array(
 			'title'       => esc_html__( 'Advanced options', 'parallax-one' ),
-			'priority'    => 85,
+			'priority'    => 70,
 			'description' => esc_html__( 'Parallax One theme general options', 'parallax-one' ),
 		)
 	);
