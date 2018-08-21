@@ -469,7 +469,7 @@ function parallax_one_customize_register( $wp_customize ) {
 	);
 
 	/**
-	 * TESTIMONIALS OPTIONS
+	 * ICON LIST SECTION
 	 */
 	$wp_customize->add_section(
 		'parallax_one_testimonials_section', array(
