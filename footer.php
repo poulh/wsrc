@@ -53,6 +53,51 @@
 		</div><!-- .footer-widget-wrap -->
 
 		<div class="footer-bottom-wrap">
+<?php
+$default                           = parallax_one_contact_get_default_content();
+$parallax_one_contact_info_item    = get_theme_mod( 'parallax_one_contact_info_content', $default );
+if ( ! parallax_one_general_repeater_is_empty( $parallax_one_contact_info_item ) ) {
+	$parallax_one_contact_info_item_decoded = json_decode( $parallax_one_contact_info_item );
+    if ( ! empty( $parallax_one_contact_info_item_decoded ) ) { ?>
+<ul class="social-icons">
+        <?php
+        foreach ( $parallax_one_contact_info_item_decoded as $parallax_one_contact_item ) {
+							$icon             = ! empty( $parallax_one_contact_item->icon_value ) ? apply_filters( 'parallax_one_translate_single_string', $parallax_one_contact_item->icon_value, 'Contact section' ) : '';
+							$text             = ! empty( $parallax_one_contact_item->text ) ? apply_filters( 'parallax_one_translate_single_string', $parallax_one_contact_item->text, 'Contact section' ) : '';
+							$link             = ! empty( $parallax_one_contact_item->link ) ? apply_filters( 'parallax_one_translate_single_string', $parallax_one_contact_item->link, 'Contact section' ) : '';
+							$section_is_empty = empty( $icon ) && empty( $text );
+
+							if ( ! $section_is_empty ) {
+								?>
+                                <li>
+									<?php
+									if ( ! empty( $icon ) ) {
+                                        if ( ! empty( $link ) ) {
+									?>
+                                            <a target="_blank" href="<?php echo esc_url( $link ); ?>">
+												<span class="fa parallax-one-footer-icons transparent-text-dark"> 											<span class="fa <?php echo esc_attr( $icon ); ?>"></span>  </span> 
+											</a>
+
+									<?php
+                                        }
+                                        ?>
+                                            
+                                       <?php
+									}
+                                    
+
+									?>
+                                    </li>
+								<!-- /div -->
+								<?php
+							}
+						}// End foreach().
+        ?>
+        </ul>
+        <br>
+<?php
+    }// End if().
+}?>               
 			<?php
 			$paralax_one_copyright = get_theme_mod( 'parallax_one_copyright', 'Themeisle' );
 			$paralax_one_copyright = apply_filters( 'parallax_one_translate_single_string', $paralax_one_copyright, 'Footer - Credits' );
@@ -84,6 +129,8 @@
 				);
 				?>
 			</div>
+
+
 
 			<?php
 			$default                   = parallax_one_footer_socials_get_default_content();
