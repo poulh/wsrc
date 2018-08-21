@@ -5159,6 +5159,11 @@ h2.screen-reader-text {
 =========================================
 -----------------------------------------*/
 
+
+.event_meta_heading > strong {
+	font-size:18px;
+}
+
 /**
  * 14.1 Adding Events
  */
