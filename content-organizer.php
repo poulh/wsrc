@@ -20,8 +20,12 @@ if ($organizers) {
     echo $contactName; ?>
     <br>
     
-<?php $contactID = $organizerID; $contactSubject = get_the_title();
-    include( locate_template( 'content-contact-info.php', false, false ) ); ?>
+<?php
+    $contactID = $organizerID;
+    $contactSubject = get_the_title();
+    $displayContactInfo = true;
+    include( locate_template( 'content-contact-info.php', false, false ) );
+    ?>
     </dd>    
 <?php
 } ?>

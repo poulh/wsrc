@@ -18,6 +18,13 @@ if ($venues) {
         $apple_maps_url = "https://maps.apple.com/?q=" . $combined_address; ?>
         <dd>
 <?php echo get_the_title($venueID) ?>
+        <br>
+<?php
+$contactID = $venueID;
+$contactSubject = get_the_title();
+$displayContactInfo = false;
+    include( locate_template( 'content-contact-info.php', false, false ) );
+    ?>
         </dd>
 <dd>
 
