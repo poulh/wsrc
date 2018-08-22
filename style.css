@@ -963,7 +963,7 @@ p.site-description {
 }
 
 header .navbar-brand {
-	height: 70px;
+	height: 98px;
 	padding: 7px 7px 7px 0;
 	line-height: 52px;
 }
@@ -1192,7 +1192,7 @@ header .navbar-brand {
 }
 
 .sticky-navigation-open {
-	min-height: 70px;
+	min-height: 98px;
 	background: transparent;
 }
 
@@ -6090,7 +6090,7 @@ h2.screen-reader-text {
 	}
 
 	.sticky-navigation {
-		min-height: 70px;
+		min-height: 98px;
 	}
 
 	.sticky-navigation .main-navigation > li.has_children > a {
@@ -6150,7 +6150,7 @@ h2.screen-reader-text {
 	}
 
 	.sticky-navigation {
-		min-height: 60px;
+		min-height: 88px;
 	}
 
 	.nav > li {
