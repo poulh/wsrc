@@ -15,7 +15,7 @@
 $postCategories = get_the_category() ?? [];
 $postCategory = empty($postCategories) ? null : $postCategories[sizeof($postCategories) - 1]; //this is an object
 $parentCategory = empty($postCategories) ? null : $postCategories[0]; //this is an object
-$postName = $postCategory ? $postCategory->name : "Page";
+$postName = $postCategory ? $postCategory->name .": " : ""; // if no category its a page. we don't put the word 'Page: ' in front of these results on searches because it looks dumb
 $postSlug = $postCategory ? $postCategory->slug : "page";
 $parentSlug = $parentCategory ? $parentCategory->slug : "page";
 
@@ -126,7 +126,7 @@ $postHasFeaturedImage = has_post_thumbnail();
                     <h2 itemprop="headline" class="entry-title single-title">
 <?php
 
-                                                 if( !$isSinglePost && !is_archive()) { echo $postName . ": "; } // !is_archive() tells us we are on a search. on searches we display the 'post type' ( event, bio, etc )
+                                                 if( !$isSinglePost && !is_archive()) { echo $postName; } // !is_archive() tells us we are on a search. on searches we display the 'post type' ( event, bio, etc )
 the_title();
 
 ?>
