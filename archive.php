@@ -33,7 +33,9 @@
 			if ( have_posts() ) {
 
 				echo '<header class="page-header">';
-                $archiveTitle = str_replace("Category: ", "", get_the_archive_title());
+                //for event archives this will prepend 'Events' with Upcoming or Past
+                $replaceWith = get_queried_object()->slug == "event" ? get_query_var("event","") : "";
+                $archiveTitle = str_replace("Category:", $replaceWith, get_the_archive_title());
                 echo '<h2 class="page-title">' . $archiveTitle . 's</h2>';
                 the_archive_description( '<div class="taxonomy-description">', '</div>' );
 				echo '</header>';
