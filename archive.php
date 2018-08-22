@@ -33,8 +33,9 @@
 			if ( have_posts() ) {
 
 				echo '<header class="page-header">';
-				the_archive_title( '<h2 class="page-title">', '</h2>' );
-				the_archive_description( '<div class="taxonomy-description">', '</div>' );
+                $archiveTitle = str_replace("Category: ", "", get_the_archive_title());
+                echo '<h2 class="page-title">' . $archiveTitle . 's</h2>';
+                the_archive_description( '<div class="taxonomy-description">', '</div>' );
 				echo '</header>';
 
 				while ( have_posts() ) {
