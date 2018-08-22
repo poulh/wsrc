@@ -752,6 +752,37 @@ function parallax_one_admin_notice() {
 add_action( 'admin_notices', 'parallax_one_admin_notice', 99 );
 
 
+add_filter( 'query_vars', 'parallax_one_add_event_query_vars' );
+function parallax_one_add_event_query_vars( $vars ) {
+    //the event param used in the next function
+    $vars[] = "event";
+    return $vars;
+}
+
+
+add_action( 'pre_get_posts', 'parallax_one_change_events_query');
+function parallax_one_change_events_query($query){
+
+    //is_main_query returns false when the widget or 'upcoming events' does the query
+    //which is what we want as we always want that widget to ignore special url params
+    if(is_archive() && $query->is_main_query()){
+
+        $queried_object = get_queried_object();
+
+        if( $queried_object->slug == "event" ) {
+            $event = get_query_var( "event", "all");
+            if( $event == "upcoming") {
+                $query->set('order','asc');
+                $query->set('date_query',array('column' => 'post_date', 'after' => '-1 days'));
+            }
+            elseif( $event == "past" ) {
+                $query->set('order','desc');
+                $query->set('date_query',array('column' => 'post_date', 'before' => '1 days'));
+            }
+        }
+    }
+};
+
 
 function Parallax_One_themeisle_sdk(){
 	require dirname(__FILE__).'/vendor/themeisle/load.php';
