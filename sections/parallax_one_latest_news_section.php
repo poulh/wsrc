@@ -6,16 +6,20 @@
  */
 
 $parallax_one_frontpage_animations = get_theme_mod( 'parallax_one_enable_animations', false );
-/*$wp_query->set('posts_per_page', 4);*/
-$parallax_number_of_posts          = get_option( 'posts_per_page' );
-$parallax_number_of_posts          = 4;
+
+//$parallax_number_of_posts_visible          = get_option( 'posts_per_page' );
+$parallax_number_of_posts_visible          = wp_is_mobile() ? PHP_INT_MAX : 4; // a little cheat. on mobile we want to show all future posts becaue the arrows look awkward
 
 $args                              = array(
 	'category_name' => 'event', 
 	'orderby' => 'post_date',
 	'order' => 'ASC',
 	'date_query' => array('column' => 'post_date', 'after' => '-1 days'),
-	'ignore_sticky_posts' => true
+	'ignore_sticky_posts' => true,
+    'meta_query' => array(
+        array('key' => '_thumbnail_id', // we only want posts with thumbnails as no thumbnail indicates reserved date but no info
+              'compare' => 'EXISTS')
+    )
 );
 
 $parallax_latestnews_cat = parallax_latest_news_cat();
@@ -29,7 +33,7 @@ if ( $the_query->have_posts() ) {
 	$parallax_one_upcoming_events_title = get_theme_mod( 'parallax_one_upcoming_events_title', esc_html__( 'Upcoming Events', 'parallax-one' ) );
 	$parallax_one_upcoming_events_title = apply_filters( 'parallax_one_translate_single_string', $parallax_one_upcoming_events_title, 'Upcoming Events Section' );
 
-	if ( $parallax_number_of_posts > 0 ) {
+	if ( $parallax_number_of_posts_visible > 0 ) {
 		?>
 		<?php parallax_hook_news_before(); ?>
 		<section class="brief timeline" id="UpcomingEvents" role="region" aria-label="<?php esc_html_e( 'Latest blog posts', 'parallax-one' ); ?>">
@@ -41,17 +45,20 @@ if ( $the_query->have_posts() ) {
 						<!-- TIMELINE HEADING / TEXT  -->
 						<?php
 						if ( ! empty( $parallax_one_upcoming_events_title ) ) {
-							echo '<div class="col-md-12 timeline-text text-left"><h2 class="text-left dark-text">' . esc_attr( $parallax_one_upcoming_events_title ) . '</h2><div class="colored-line-left"></div></div>';
+							echo '<div class="col-md-12 timeline-text text-left"><h2 class="text-left dark-text">' . esc_attr( $parallax_one_upcoming_events_title ) . ' <span class="read-more" style="font-size:24px"><a href="category/event/?event=upcoming"><i class="fa fa-arrow-circle-right"></i></a></span></h2><div class="colored-line-left"></div></div>';
 						} elseif ( is_customize_preview() ) {
 							echo '<div class="col-md-12 timeline-text text-left paralax_one_only_customizer"><h2 class="text-left dark-text "></h2><div class="colored-line-left "></div></div>';
 						}
 						?>
 
 						<div class="parallax-slider-whole-wrap">
+<?php if( $the_query->found_posts > $parallax_number_of_posts_visible ) { ?>
+
 							<div class="controls-wrap">
 								<button class="control_next icon icon-arrow-carrot-down"><span class="screen-reader-text"><?php esc_attr_e( 'Post slider navigation: Down', 'parallax-one' ); ?></span></button>
 								<button class="control_prev fade-btn icon icon-arrow-carrot-up"><span class="screen-reader-text"><?php esc_attr_e( 'Post slider navigation: Up', 'parallax-one' ); ?></span></button>
 							</div>
+<?php } ?>
 							<!-- TIMLEINE SCROLLER -->
 							<div itemscope itemtype="http://schema.org/Blog" id="parallax_slider" class="col-md-12 timeline-section">
 								<ul class="vertical-timeline" id="timeline-scroll">
@@ -61,44 +68,21 @@ if ( $the_query->have_posts() ) {
 										$i_latest_posts = 0;
 									while ( $the_query->have_posts() ) :
 										$the_query->the_post();
-                                    if(!has_post_thumbnail()) {
-                                        //if there is no thumbnail we skip the event. this is our way of scheduling events
-                                        //and getting them in the calendar, but not showing them
-                                        continue;
-                                    }
-										//$id = get_the_id();
-										//$meta = get_post_meta($id);
+
 										$upcoming_event = get_post_time('U',true) >= current_time('U',1);
 										$upcoming_event = false; /* turn off upcoming for now as they are all upcoming */
-										/* i want to see all the posts on mobile or desktop 
-										 * if ( !wp_is_mobile() ) { */
-											if ( $i_latest_posts % $parallax_number_of_posts == 0 ) {
-												echo '<li>';
-											}
-										/*} else {
-											echo '<li>';
-										}*/
-										?>
-										<?php  
+										/* i want to see all the posts on mobile or desktop */
+                                        if ( $i_latest_posts % $parallax_number_of_posts_visible == 0 ) {
+                                            echo '<li>';
+                                        }
+
 										$categories = get_the_category();
 										$has_category = !empty($categories);
 										$the_title = the_title('','',false); /*false means just return the title. two empty strings are prefix and suffix*/
 										$post_title = $the_title;
-										// if( $has_category) {
-										// 	foreach( $categories as $category ) {
-										// 		$post_title = $category->name . ': ' . $the_title; 
-										// 	}
-										// }
-										// ;
 										?>
 										<?php ;/* translators: %s is post name */ ?>
-										<div itemscope itemprop="blogPosts" itemtype="http://schema.org/BlogPosting" id="post-<?php the_ID(); ?>" class="timeline-box-wrap" title="<?php printf( esc_html__( '%s', 'parallax-one' ), $post_title ); ?>"
-										<?php
-										if ( ! empty( $parallax_one_frontpage_animations ) && ( $parallax_one_frontpage_animations === true ) && ( $i_latest_posts < $parallax_number_of_posts ) ) {
-														echo 'data-scrollreveal="enter left after 0.15s over 1s"';
-										}
-?>
->
+										<div itemscope itemprop="blogPosts" itemtype="http://schema.org/BlogPosting" id="post-<?php the_ID(); ?>" class="timeline-box-wrap" title="<?php printf( esc_html__( '%s', 'parallax-one' ), $post_title ); ?>">
 												<div datetime="<?php the_time( 'Y-m-d\TH:i:sP' ); ?>" title="<?php the_time( _x( 'l, F j, Y, g:i a', 'post time format', 'parallax-one' ) ); ?>" class="entry-published date small-text strong">
 												<?php if( $upcoming_event ) { ?> <i style="color:red;" class="fa fa-exclamation"></i>
 
@@ -140,19 +124,12 @@ if ( $the_query->have_posts() ) {
 											/* visible posts live between the two <li> tags.
 											 * this is the closing tag. we increment the counter first
 											 * so that the li shows up on the zero-ith and 4th. 
-											 * if we have less than $parallax_number_of_posts the functions
+											 * if we have less than $parallax_number_of_posts_visible the functions
 											 * below add in the ending </li> tag*/
 											$i_latest_posts++;
-											/* i want to see all the posts on mobile and desktop 
-											 * if ( ! wp_is_mobile() ) {*/
-												if ( $i_latest_posts % $parallax_number_of_posts == 0 ) {
-													echo '</li>';
-												}
-											/*} else {
-												echo '</li>';
-											}*/
-											
-
+                                            if ( $i_latest_posts % $parallax_number_of_posts_visible == 0 ) {
+                                                echo '</li>';
+                                            }
 										endwhile;
 									wp_reset_postdata();
 									?>
