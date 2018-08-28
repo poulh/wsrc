@@ -174,7 +174,7 @@ if ( ! parallax_one_general_repeater_is_empty( $parallax_one_contact_info_item )
 			}// End if().
 	?>
 		</div><!-- .footer-bottom-wrap -->
-		<?php echo apply_filters( 'parallax_one_plus_footer_text_filter', '<div class="powered-by">' . esc_html__( 'Site by ', 'parallax-one' ) . '<a href="//www.asquaredsoftware.com" target="_blank" rel="nofollow">' . esc_html__( 'A-Squared Software', 'parallax-one' ) . '</a></div>' ); ?>
+		<?php echo apply_filters( 'parallax_one_plus_footer_text_filter', '<div class="powered-by">' . esc_html__( 'Site by: ', 'parallax-one' ) . '<a href="//www.asquaredsoftware.com" target="_blank" rel="nofollow">' . esc_html__( 'A-Squared Software', 'parallax-one' ) . '</a></div>' ); ?>
 	</div><!-- container -->
 </footer>
 

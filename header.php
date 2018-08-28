@@ -30,9 +30,6 @@ echo '">';
 parallax_hook_body_top();
 ?>
 <div id="mobilebgfix">
-	<div class="mobile-bg-fix-img-wrap">
-	<div class="mobile-bg-fix-img"></div>
-	</div>
 	<div class="mobile-bg-fix-whole-site">
 
 	<a class="skip-link screen-reader-text" href="#content"><?php esc_html_e( 'Skip to content', 'parallax-one' ); ?></a>

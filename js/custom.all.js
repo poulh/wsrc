@@ -592,25 +592,3 @@ var isMobile = {
 		);
 
 } )( jQuery );
-
-
-/* mobile background fix */
-jQuery( document ).ready( mobile_bg_fix );
-function mobile_bg_fix() {
-	'use strict';
-	if ( isMobile.any() && jQuery( 'body.custom-background' ) ) {
-			var bodyClass   = jQuery( 'body.custom-background' );
-			var imgURL      = bodyClass.css( 'background-image' );
-			var imgSize     = bodyClass.css( 'background-size' );
-			var imgPosition = bodyClass.css( 'background-position' );
-			var imgRepeat   = bodyClass.css( 'background-repeat' );
-			jQuery( '#mobilebgfix' ).addClass( 'mobile-bg-fix-wrap' ).find( '.mobile-bg-fix-img' ).css(
-				{
-					'background-image'      : imgURL,
-					'background-size'       : imgSize,
-					'background-position'   : imgPosition,
-					'background-repeat'     : imgRepeat
-				}
-			);
-	}
-}
