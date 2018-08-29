@@ -65,6 +65,13 @@ if( $isEvent ) {
 }
 $numBios = sizeof( $postBios );
 $isSinglePost = is_single(); // single post means its the actual posts page as opposed to a search or 'category/archive' page
+if(!$isSinglePost) {
+    $queried_object = get_queried_object();
+    $isSinglePost = ($queried_object->slug == "event") && get_query_var("event") == "next";
+}
+
+
+
 
 ?>
 <?php if(!$isSinglePost ) { ?>
@@ -375,14 +382,14 @@ if($isEvent && !$isSinglePost && !$postHasFeaturedImage) {
                         <strong>Click to buy
 <?php echo $bioPost->post_title; ?>&apos;s <!-- &apos; is an apostrophe... it messes up my code editor to use the real one -->
                             <?php if ($numAmazonIds > 1) {     ?>
-                            books
+                                                               books,
                             <?php
                             } else {
                                 ?>
-                            book
+                                book,
                             <?php
                             } ?>
-                            from Amazon, or browse all of our books in the club's <a href="/book-store">Book Store
+                        or browse all of our books in the club's <a href="/book-store">Book Store
 
  <i class="fa fa-book"></i></a>  </strong>
 

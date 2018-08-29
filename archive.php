@@ -36,7 +36,10 @@
                 //for event archives this will prepend 'Events' with Upcoming or Past
                 $replaceWith = get_queried_object()->slug == "event" ? get_query_var("event","") : "";
                 $archiveTitle = str_replace("Category:", $replaceWith, get_the_archive_title());
-                echo '<h2 class="page-title">' . $archiveTitle . 's</h2>';
+                if( $wp_query->post_count > 1 ) {
+                    $archiveTitle = $archiveTitle .'s';
+                }
+                echo '<h2 class="page-title">' . $archiveTitle . '</h2>';
                 the_archive_description( '<div class="taxonomy-description">', '</div>' );
 				echo '</header>';
 
@@ -52,7 +55,11 @@
                     get_template_part( 'content', 'single' );
 					parallax_hook_entry_after();
 				}
-				the_posts_navigation();
+                if( (get_queried_object()->slug == "event") && (get_query_var("event") == "next")) {
+                    // no navigation
+                } else {
+                    the_posts_navigation();
+                }
 
 			} else {
 				get_template_part( 'content', 'none' );

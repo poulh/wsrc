@@ -771,7 +771,7 @@ function parallax_one_change_events_query($query){
 
         if( $queried_object->slug == "event" ) {
             $event = get_query_var( "event", "all");
-            if( $event == "upcoming") {
+            if( $event == "upcoming" ) {
                 $query->set('order','asc');
                 $query->set('date_query',array('column' => 'post_date', 'after' => '-1 days'));
             }
@@ -779,6 +779,12 @@ function parallax_one_change_events_query($query){
                 $query->set('order','desc');
                 $query->set('date_query',array('column' => 'post_date', 'before' => '1 days'));
             }
+            elseif( $event == "next" ) {
+                $query->set('order','asc');
+                $query->set('date_query',array('column' => 'post_date', 'after' => '-1 days'));
+                $query->set('posts_per_page','1');
+            }
+
         }
     }
 };
