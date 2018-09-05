@@ -133,14 +133,9 @@ if ( ! function_exists( 'parallax_one_setup' ) ) :
 		add_theme_support( 'post-thumbnails' );
 
 		/* Set the image size by cropping the image */
-		add_image_size( 'parallax-one-post-thumbnail-big', 730, 340, true );
-		add_image_size( 'parallax-one-post-thumbnail-mobile', 500, 233, true );
 
-		// Latest news Section (homepage)
-		add_image_size( 'parallax-one-post-thumbnail-latest-news', 150, 150, true );
-		add_image_size( 'parallax_one_team', 268, 273, true );
-		add_image_size( 'parallax_one_services', 60, 62, true );
-		add_image_size( 'parallax_one_customers', 75, 75, true );
+		// // Latest news Section (homepage)
+        add_image_size( 'parallax-one-post-thumbnail-latest-news', 150, 150, true );
 
 		/**
 		 * Welcome screen

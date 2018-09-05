@@ -22,15 +22,19 @@ $parentSlug = $parentCategory ? $parentCategory->slug : "page";
 $now = new DateTime();
 $upcoming = $now->format("Y-m-d") <= get_the_date("Y-m-d");
 $dayNumber = get_the_date('j');
-$abbreviation = $dayNumber. 'th';
-$ends = array('th','st','nd','rd','th','th','th','th','th','th');
-if (($dayNumber %100) >= 11 && ($dayNumber%100) <= 13) {
-    // do nothing
-} else {
-    $abbreviation = $dayNumber. $ends[$dayNumber % 10];
-}
-$shortDate = get_the_date('M') . " " . $abbreviation . ", '" . get_the_date("y");
-$longDate = get_the_date('F') . " " . $abbreviation . ", " . get_the_date("Y");
+
+// This commented-out code adds a 'th' to numbers or a 'st' ( 1st ). Marcia didn't want it
+// $abbreviation = $dayNumber. 'th';
+// $ends = array('th','st','nd','rd','th','th','th','th','th','th');
+// if (($dayNumber %100) >= 11 && ($dayNumber%100) <= 13) {
+//     // do nothing
+// } else {
+//     $abbreviation = $dayNumber. $ends[$dayNumber % 10];
+// }
+// $shortDate = get_the_date('M') . " " . $abbreviation . ", '" . get_the_date("y");
+// $longDate = get_the_date('F') . " " . $abbreviation . ", " . get_the_date("Y");
+$shortDate = get_the_date('M') . " " . $dayNumber . ", '" . get_the_date("y");
+$longDate = get_the_date('F') . " " . $dayNumber . ", " . get_the_date("Y");
 
 
 $postBios = [];
@@ -90,11 +94,9 @@ $postHasFeaturedImage = has_post_thumbnail();
 
 
     $image_id = get_post_thumbnail_id();
-    $image_url_big = wp_get_attachment_image_src($image_id, 'parallax-one-post-thumbnail-big', true);
-    $image_url_mobile = wp_get_attachment_image_src($image_id, 'parallax-one-post-thumbnail-mobile', true); ?>
+    $image_url = wp_get_attachment_url($image_id); ?>
             <picture itemscope itemprop="image">
-                <source media="(max-width: 600px)" srcset="<?php echo esc_url($image_url_mobile[0]); ?>">
-                <img src="<?php echo esc_url($image_url_big[0]); ?>" alt="<?php the_title_attribute(); ?>">
+                 <img src="<?php echo esc_url($image_url); ?>"  style="width:100%" alt="<?php the_title_attribute(); ?>">
             </picture>
             <?php
 
@@ -327,7 +329,7 @@ if($isEvent && !$isSinglePost && !$postHasFeaturedImage) {
 
             <?php foreach ($postBios as $bioID) {
                     $bioImageID = get_post_thumbnail_id($bioID);
-                    $bioImageUrl = wp_get_attachment_image_src($bioImageID, 'parallax-one-post-thumbnail-big', true);
+                    $bioImageUrl = wp_get_attachment_image_src($bioImageID, 'post-thumbnail', true);
                     $bioPost = get_post($bioID);
                     $bioName = $bioPost->post_title;
                     ?>
